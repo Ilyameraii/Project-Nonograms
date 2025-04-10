@@ -32,7 +32,7 @@ namespace Nonograms_1._1.forms
         {
             InitializeComponent();
             _crossword = crossword;
-            labelID.Text = Convert.ToString(_crossword.CrosswordID);
+            labelID.Text = "#"+Convert.ToString(_crossword.CrosswordID);
             labelSize.Text = $"Размер:{_crossword.Width}x{_crossword.Height}";
             labelDifficult.Text = "Сложность: ";
             if (_crossword.Difficult == 1)
@@ -70,7 +70,8 @@ namespace Nonograms_1._1.forms
             _solvingProcess = solvingProcess;
             _currentUser = Program.context.Users.FirstOrDefault(u => u.UsersID == solvingProcess.UsersID);
             _crossword = Program.context.Crosswords.FirstOrDefault(c => c.CrosswordID == solvingProcess.CrosswordID);
-            labelID.Text = Convert.ToString(_crossword.CrosswordID);
+
+            labelID.Text = "#" + Convert.ToString(_crossword.CrosswordID);
             labelSize.Text = $"Размер:{_crossword.Width}x{_crossword.Height}";
             labelDifficult.Text = "Сложность: ";
             if (_crossword.Difficult == 1)

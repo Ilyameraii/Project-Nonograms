@@ -116,17 +116,6 @@ namespace Nonograms_1._1.Forms
                 }
             }
 
-            label1.Text = "";
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < M; j++)
-                {
-                    label1.Text += $"{matrix[i, j],3}";
-                }
-                label1.Text += Environment.NewLine;
-            }
-            label2.Text = matrixToString;
-
         }
         // Обработчик наведения курсора
         private void Pixel_MouseEnter(object sender, EventArgs e)
@@ -231,6 +220,7 @@ namespace Nonograms_1._1.Forms
                         };
                         Program.context.Crosswords.Add(crossword);
                         Program.context.SaveChanges();
+                        MessageBox.Show("Успешное добавление кроссворда!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

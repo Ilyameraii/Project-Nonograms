@@ -65,6 +65,10 @@ namespace Nonograms_1._1
                             continue;
                         }
                     }
+                    else if(currentDifficult == 4)
+                    {
+                        continue;
+                    }
                 }
                 else if (currentDifficult == 4)
                 {

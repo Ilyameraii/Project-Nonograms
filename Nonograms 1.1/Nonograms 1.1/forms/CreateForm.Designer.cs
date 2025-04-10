@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateForm));
             this.panel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonExit = new System.Windows.Forms.Button();
             this.numericUpDownLength = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownHeight = new System.Windows.Forms.NumericUpDown();
@@ -39,7 +38,6 @@
             this.labelName = new System.Windows.Forms.Label();
             this.comboBoxDifficult = new System.Windows.Forms.ComboBox();
             this.labelDifficult = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).BeginInit();
             this.SuspendLayout();
@@ -51,13 +49,6 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(480, 480);
             this.panel.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(812, 135);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 201);
-            this.label1.TabIndex = 11;
             // 
             // buttonExit
             // 
@@ -74,7 +65,7 @@
             // 
             this.numericUpDownLength.Location = new System.Drawing.Point(80, 80);
             this.numericUpDownLength.Maximum = new decimal(new int[] {
-            30,
+            25,
             0,
             0,
             0});
@@ -97,7 +88,7 @@
             // 
             this.numericUpDownHeight.Location = new System.Drawing.Point(80, 115);
             this.numericUpDownHeight.Maximum = new decimal(new int[] {
-            30,
+            25,
             0,
             0,
             0});
@@ -164,21 +155,12 @@
             this.labelDifficult.TabIndex = 18;
             this.labelDifficult.Text = "Выберите сложность:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(215, 583);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 19;
-            // 
             // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1064, 608);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelDifficult);
             this.Controls.Add(this.comboBoxDifficult);
             this.Controls.Add(this.labelName);
@@ -187,7 +169,6 @@
             this.Controls.Add(this.numericUpDownHeight);
             this.Controls.Add(this.numericUpDownLength);
             this.Controls.Add(this.panel);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -205,7 +186,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.NumericUpDown numericUpDownLength;
         private System.Windows.Forms.NumericUpDown numericUpDownHeight;
@@ -214,6 +194,5 @@
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.ComboBox comboBoxDifficult;
         private System.Windows.Forms.Label labelDifficult;
-        private System.Windows.Forms.Label label2;
     }
 }

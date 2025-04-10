@@ -43,11 +43,11 @@
             // 
             this.labelID.AutoSize = true;
             this.labelID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelID.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelID.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelID.Location = new System.Drawing.Point(10, 10);
             this.labelID.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(19, 15);
+            this.labelID.Size = new System.Drawing.Size(18, 15);
             this.labelID.TabIndex = 1;
             this.labelID.Text = "ID";
             this.labelID.Click += new System.EventHandler(this.CrosswordUserControl_Click);
@@ -56,11 +56,11 @@
             // 
             this.labelProgress.AutoSize = true;
             this.labelProgress.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelProgress.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelProgress.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelProgress.Location = new System.Drawing.Point(10, 73);
             this.labelProgress.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.labelProgress.Name = "labelProgress";
-            this.labelProgress.Size = new System.Drawing.Size(55, 15);
+            this.labelProgress.Size = new System.Drawing.Size(54, 15);
             this.labelProgress.TabIndex = 2;
             this.labelProgress.Text = "Progress";
             this.labelProgress.Click += new System.EventHandler(this.CrosswordUserControl_Click);
@@ -69,7 +69,7 @@
             // 
             this.labelSize.AutoSize = true;
             this.labelSize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelSize.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSize.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelSize.Location = new System.Drawing.Point(10, 94);
             this.labelSize.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.labelSize.Name = "labelSize";
@@ -82,7 +82,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelStatus.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStatus.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelStatus.Location = new System.Drawing.Point(10, 31);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.labelStatus.Name = "labelStatus";
@@ -124,11 +124,11 @@
             // 
             this.labelDifficult.AutoSize = true;
             this.labelDifficult.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelDifficult.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDifficult.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelDifficult.Location = new System.Drawing.Point(10, 52);
             this.labelDifficult.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.labelDifficult.Name = "labelDifficult";
-            this.labelDifficult.Size = new System.Drawing.Size(51, 15);
+            this.labelDifficult.Size = new System.Drawing.Size(49, 15);
             this.labelDifficult.TabIndex = 4;
             this.labelDifficult.Text = "Difficult";
             this.labelDifficult.Click += new System.EventHandler(this.CrosswordUserControl_Click);
