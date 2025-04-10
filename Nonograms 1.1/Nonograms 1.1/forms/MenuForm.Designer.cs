@@ -299,6 +299,7 @@
             // 
             // FLPanelOfCrosswords
             // 
+            this.FLPanelOfCrosswords.AutoScroll = true;
             this.FLPanelOfCrosswords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FLPanelOfCrosswords.Location = new System.Drawing.Point(0, 50);
             this.FLPanelOfCrosswords.Name = "FLPanelOfCrosswords";

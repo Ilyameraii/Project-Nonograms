@@ -93,11 +93,13 @@
             // 
             // pictureBox
             // 
+            this.pictureBox.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox.Location = new System.Drawing.Point(10, 10);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(126, 124);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.CrosswordUserControl_Click);
@@ -142,7 +144,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "CrosswordUserControl";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(352, 144);
+            this.Size = new System.Drawing.Size(347, 144);
             this.Load += new System.EventHandler(this.CrosswordUserControl_Load);
             this.Click += new System.EventHandler(this.CrosswordUserControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
