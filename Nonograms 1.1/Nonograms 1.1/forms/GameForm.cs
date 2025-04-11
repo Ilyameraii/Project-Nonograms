@@ -95,9 +95,9 @@ namespace Nonograms_1._1.Forms
         /// <param name="solvingProcess"></param>
         public GameForm(SolvingProcess solvingProcess)
         {
-            this._solvingProcess = Program.context.SolvingProcesses.FirstOrDefault(p => p.SolvingProcessID == solvingProcess.SolvingProcessID);
+            this._solvingProcess = solvingProcess;
 
-            this._crossword = Program.context.Crosswords.FirstOrDefault(x => x.CrosswordID == solvingProcess.CrosswordID);
+            this._crossword = Program.context.Crosswords.FirstOrDefault(x => x.CrosswordID == _solvingProcess.CrosswordID);
             if (_solvingProcess.LeadTime == null)
             {
                 _solvingProcess.LeadTime = 0;

@@ -38,12 +38,12 @@ namespace Nonograms_1._1
                     }
                     else
                     {
-                        crosswordUserControl = new CrosswordUserControl(crossword);
+                        crosswordUserControl = new CrosswordUserControl(crossword,  currentUser);
                     }
                 }
                 else
                 {
-                    crosswordUserControl = new CrosswordUserControl(crossword);
+                    crosswordUserControl = new CrosswordUserControl(crossword, currentUser);
                 }
                 // Передаем метод обновления панели в UserControl
                 crosswordUserControl.GameFormClosed += (s, args) =>
@@ -92,6 +92,8 @@ namespace Nonograms_1._1
                         );
 
             }
+
+            fillPanelOfCrosswords();
         }
         private void buttonToLogin_Click(object sender, EventArgs e)
         {
@@ -105,6 +107,7 @@ namespace Nonograms_1._1
                 updateUIForUser(currentUser);
 
             }
+            fillPanelOfCrosswords();
         }
         private void MenuForm_Load(object sender, EventArgs e)
         {

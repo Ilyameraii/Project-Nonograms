@@ -144,7 +144,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "CrosswordUserControl";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(347, 144);
+            this.Size = new System.Drawing.Size(342, 144);
             this.Load += new System.EventHandler(this.CrosswordUserControl_Load);
             this.Click += new System.EventHandler(this.CrosswordUserControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
