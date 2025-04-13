@@ -441,6 +441,7 @@ namespace Nonograms_1._1.Forms
             {
                 timer.Enabled = false;
                 _solvingProcess.StatusOfCrossword = true;
+                _solvingProcess.EndTime = DateTime.Now;
                 Program.context.SaveChanges();
                 MessageBox.Show("Вы победили!\nИмя кроссворда: " + name, "Успех!", MessageBoxButtons.OK);
                 for (int i = 0; i < N; i++)
@@ -933,6 +934,7 @@ namespace Nonograms_1._1.Forms
                 _solvingProcess.StartTime = DateTime.Now;
                 _solvingProcess.LeadTime = 0;
                 _solvingProcess.HintsUsed = 0;
+                _solvingProcess.EndTime = null;
                 // Обновляем матрицу
             }
             for (int i = 0; i < N; i++)
