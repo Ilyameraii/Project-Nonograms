@@ -263,7 +263,6 @@ namespace Nonograms_1._1.Forms
 
                                 pixel.Invalidate();
                                 hintsUsed++;
-                                buttonHint.Text = $"Подсказать {hintsUsed}/{maxOfHints}";
                             }
                             // значение закрашенной клетки
                             else if ((readyMatrix[i, j] == valueOfWhite || readyMatrix[i, j] == valueOfX) && pixel.BackColor == Color.Black || pixel.BackColor == Color.LightBlue && pixel.Tag == null)
@@ -273,7 +272,6 @@ namespace Nonograms_1._1.Forms
 
                                 pixel.Invalidate();
                                 hintsUsed++;
-                                buttonHint.Text = $"Подсказать {hintsUsed}/{maxOfHints}";
                             }
                             if (hintsUsed == maxOfHints)
                             {
@@ -357,6 +355,10 @@ namespace Nonograms_1._1.Forms
 
                 }
             }
+
+            // обновление подсказок
+            buttonHint.Text = $"Подсказать {hintsUsed}/{maxOfHints}";
+
             checkProgressPercent();
             // проверка на выигрыш
             bool winOrNot = true;
@@ -373,6 +375,7 @@ namespace Nonograms_1._1.Forms
             }
             if (winOrNot)
             {
+                timer.Enabled = false;
                 MessageBox.Show("Вы победили!\nИмя кроссворда: " + name, "Успех!", MessageBoxButtons.OK);
                 for (int i = 0; i < N; i++)
                 {
@@ -416,6 +419,10 @@ namespace Nonograms_1._1.Forms
 
                 }
             }
+
+            // обновление подсказок
+            buttonHint.Text = $"Подсказать {hintsUsed}/{maxOfHints}";
+
             checkProgressPercent();
             // проверка на выигрыш
             bool winOrNot = true;
@@ -518,6 +525,8 @@ namespace Nonograms_1._1.Forms
             // Вычисляем размер клетки так, чтобы все влезало
             int pixelSize = Math.Min(panel.Width / (M + digitXSize), panel.Height / (N + digitXSize));
             panel.Size = new Size((maxRowDigits + M) * pixelSize, (maxColDigits + N) * pixelSize);
+
+
             CenterPanel();
             // Вычисляем корректные отступы для центрирования
             int offsetX = 0;
@@ -565,11 +574,11 @@ namespace Nonograms_1._1.Forms
                         TextAlign = ContentAlignment.MiddleCenter,
                         BackColor = Color.DarkGray,
                         BorderStyle = BorderStyle.FixedSingle,
-                        Font = new Font("Calibri", 20, FontStyle.Bold)
+                        Font = new Font("Calibri", 72, FontStyle.Bold)
                     };
                     rowHintLabel.Click += digit_Click;
                     rowHintLabel.Paint += digit_Paint;
-                    AdjustFontSize(rowHintLabel, pixelSize - 2, pixelSize - 2);
+                    AdjustFontSize(rowHintLabel, pixelSize, pixelSize);
                     panel.Controls.Add(rowHintLabel);
                 }
             }
@@ -747,7 +756,7 @@ namespace Nonograms_1._1.Forms
                 {
                     SizeF textSize = g.MeasureString(label.Text, testFont);
 
-                    if (textSize.Width <= maxWidth - 4 && textSize.Height <= maxHeight - 4)
+                    if (textSize.Width <= maxWidth - 5 && textSize.Height <= maxHeight - 5)
                         break; // Если текст влезает, выходим
 
                     fontSize--; // Уменьшаем шрифт
@@ -923,6 +932,7 @@ namespace Nonograms_1._1.Forms
                 // Обновляем таймер 
                 _solvingProcess.StartTime = DateTime.Now;
                 _solvingProcess.LeadTime = 0;
+                _solvingProcess.HintsUsed = 0;
                 // Обновляем матрицу
             }
             for (int i = 0; i < N; i++)
@@ -949,6 +959,18 @@ namespace Nonograms_1._1.Forms
                     }
                 }
             }
+            // сброс таймера для неавторизованного пользователя
+            if (_solvingProcess == null)
+            {
+                A = 0; // десятки часов таймера
+                B = 0; // часы таймера
+                C = 0; // десятки минут таймера
+                D = 0;  // минуты таймер
+                E = 0; // десятки секунд таймера
+                F = 0; // секунды таймера
+            }
+            hintsUsed = 0;
+
             if (_solvingProcess != null)
             {
                 // Обновляем данные в базе
