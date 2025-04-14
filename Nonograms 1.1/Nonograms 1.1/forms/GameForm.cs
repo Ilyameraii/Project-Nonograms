@@ -716,7 +716,7 @@ namespace Nonograms_1._1.Forms
                     count = 0;
                 }
             }
-            if (count > 0) hints.Add(count);
+            if (count > 0) hints.Add(count); // если последняя клетка закрашена в черный и не сработала функция добавления count
             return hints;
         }
 
@@ -739,7 +739,7 @@ namespace Nonograms_1._1.Forms
                     count = 0;
                 }
             }
-            if (count > 0) hints.Add(count);
+            if (count > 0) hints.Add(count); // если последняя клетка закрашена в черный и не сработала функция добавления count
             return hints;
         }
 
