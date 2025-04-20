@@ -38,7 +38,7 @@
             this.panelUser = new System.Windows.Forms.Panel();
             this.pictureBoxAvatar = new System.Windows.Forms.PictureBox();
             this.labelUsername = new System.Windows.Forms.Label();
-            this.labelStat = new System.Windows.Forms.Label();
+            this.labelStatTitle = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonToLogin = new System.Windows.Forms.Button();
             this.buttonToRegistration = new System.Windows.Forms.Button();
@@ -50,6 +50,8 @@
             this.buttonCompleted = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.FLPanelOfCrosswords = new System.Windows.Forms.FlowLayoutPanel();
+            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
+            this.labelStat = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -67,10 +69,10 @@
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTop.Controls.Add(this.buttonGoCreate);
             this.panelTop.Controls.Add(this.panelHeader);
-            this.panelTop.Controls.Add(this.panelStat);
             this.panelTop.Controls.Add(this.buttonLogout);
             this.panelTop.Controls.Add(this.buttonToLogin);
             this.panelTop.Controls.Add(this.buttonToRegistration);
+            this.panelTop.Controls.Add(this.panelStat);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
@@ -123,11 +125,12 @@
             // 
             // panelStat
             // 
-            this.panelStat.Controls.Add(this.panelUser);
             this.panelStat.Controls.Add(this.labelStat);
+            this.panelStat.Controls.Add(this.panelUser);
+            this.panelStat.Controls.Add(this.labelStatTitle);
             this.panelStat.Location = new System.Drawing.Point(28, 3);
             this.panelStat.Name = "panelStat";
-            this.panelStat.Size = new System.Drawing.Size(287, 91);
+            this.panelStat.Size = new System.Drawing.Size(440, 91);
             this.panelStat.TabIndex = 7;
             // 
             // panelUser
@@ -162,18 +165,18 @@
             this.labelUsername.Text = "User";
             this.labelUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelStat
+            // labelStatTitle
             // 
-            this.labelStat.BackColor = System.Drawing.Color.Transparent;
-            this.labelStat.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelStat.ForeColor = System.Drawing.Color.White;
-            this.labelStat.Location = new System.Drawing.Point(136, 3);
-            this.labelStat.Name = "labelStat";
-            this.labelStat.Size = new System.Drawing.Size(99, 23);
-            this.labelStat.TabIndex = 6;
-            this.labelStat.Text = "Статистика";
-            this.labelStat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelStat.Visible = false;
+            this.labelStatTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelStatTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStatTitle.ForeColor = System.Drawing.Color.White;
+            this.labelStatTitle.Location = new System.Drawing.Point(145, 7);
+            this.labelStatTitle.Name = "labelStatTitle";
+            this.labelStatTitle.Size = new System.Drawing.Size(99, 23);
+            this.labelStatTitle.TabIndex = 6;
+            this.labelStatTitle.Text = "Статистика";
+            this.labelStatTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelStatTitle.Visible = false;
             // 
             // buttonLogout
             // 
@@ -307,6 +310,23 @@
             this.FLPanelOfCrosswords.TabIndex = 1;
             this.FLPanelOfCrosswords.Paint += new System.Windows.Forms.PaintEventHandler(this.FLPanelOfCrosswords_Paint);
             // 
+            // entityCommand1
+            // 
+            this.entityCommand1.CommandTimeout = 0;
+            this.entityCommand1.CommandTree = null;
+            this.entityCommand1.Connection = null;
+            this.entityCommand1.EnablePlanCaching = true;
+            this.entityCommand1.Transaction = null;
+            // 
+            // labelStat
+            // 
+            this.labelStat.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStat.ForeColor = System.Drawing.Color.White;
+            this.labelStat.Location = new System.Drawing.Point(154, 27);
+            this.labelStat.Name = "labelStat";
+            this.labelStat.Size = new System.Drawing.Size(273, 61);
+            this.labelStat.TabIndex = 8;
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,7 +364,7 @@
         private System.Windows.Forms.Button buttonToRegistration;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.PictureBox pictureBoxAvatar;
-        private System.Windows.Forms.Label labelStat;
+        private System.Windows.Forms.Label labelStatTitle;
         private System.Windows.Forms.Panel panelStat;
         private System.Windows.Forms.Panel panelUser;
         private System.Windows.Forms.Panel panelHeader;
@@ -359,6 +379,8 @@
         private System.Windows.Forms.Button buttonMedium;
         private System.Windows.Forms.Button buttonHard;
         private System.Windows.Forms.Button buttonCompleted;
+        private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
+        private System.Windows.Forms.Label labelStat;
     }
 }
 

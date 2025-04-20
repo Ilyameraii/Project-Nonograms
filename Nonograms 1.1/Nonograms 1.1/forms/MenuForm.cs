@@ -17,10 +17,6 @@ namespace Nonograms_1._1
             InitializeComponent();
             fillPanelOfCrosswords();
         }
-        private void OnGameFormClosed(object sender, EventArgs e)
-        {
-            fillPanelOfCrosswords();
-        }
         private void fillPanelOfCrosswords()
         {
             FLPanelOfCrosswords.Controls.Clear();
@@ -38,7 +34,7 @@ namespace Nonograms_1._1
                     }
                     else
                     {
-                        crosswordUserControl = new CrosswordUserControl(crossword,  currentUser);
+                        crosswordUserControl = new CrosswordUserControl(crossword, currentUser);
                     }
                 }
                 else
@@ -49,6 +45,10 @@ namespace Nonograms_1._1
                 crosswordUserControl.GameFormClosed += (s, args) =>
                 {
                     fillPanelOfCrosswords();  // Обновляем панель
+                    if (currentUser != null)
+                    {
+                        updateUIForUser(currentUser);
+                    }
                 };
 
                 if (currentDifficult != crossword.Difficult && currentDifficult > 0 && currentDifficult < 4)
@@ -65,7 +65,7 @@ namespace Nonograms_1._1
                             continue;
                         }
                     }
-                    else if(currentDifficult == 4)
+                    else if (currentDifficult == 4)
                     {
                         continue;
                     }
@@ -126,6 +126,44 @@ namespace Nonograms_1._1
             if (currentUser != null)
             {
                 // обновление интерфейса
+                var readySolvingProcessesOfUser = Program.context.SolvingProcesses.Where(s => s.UsersID == currentUser.UsersID && s.StatusOfCrossword == true).ToList();
+                if (readySolvingProcessesOfUser.Count > 0)
+                {
+                    labelStat.Text = $"Пройденных кроссвордов:  {readySolvingProcessesOfUser.Count}" + Environment.NewLine;
+                    int countOfDifficult = 0;
+                    int countOfHintsUsed = 0;
+                    foreach (var process in readySolvingProcessesOfUser)
+                    {
+                        var crossword = process.Crossword;
+                        countOfDifficult += crossword.Difficult;
+                        countOfHintsUsed += (int)process.HintsUsed;
+                    }
+                    labelStat.Text += $"Средняя сложность кроссворда: ";
+                    switch (countOfDifficult / readySolvingProcessesOfUser.Count)
+                    {
+                        case 1:
+                            labelStat.Text += $"Лёгкая";
+                            break;
+                        case 2:
+                            labelStat.Text += $"Средняя";
+                            break;
+                        case 3:
+                            labelStat.Text += $"Сложная";
+                            break;
+                    }
+
+                    labelStat.Text += Environment.NewLine;
+                    labelStat.Text += $"В среднем подсказок:  {countOfHintsUsed / readySolvingProcessesOfUser.Count}";
+                }
+                else
+                {
+                    labelStat.Text = $"Пройденных кроссвордов:  0" + Environment.NewLine;
+                    labelStat.Text += $"Средняя сложность кроссворда: неизвестно" + Environment.NewLine;
+                    labelStat.Text += $"В среднем подсказок: 0";
+
+                }
+                    labelStatTitle.Visible = true;
+                labelStat.Visible = true;
                 labelUsername.Text = currentUser.UserLogin;
                 if (currentUser.UsersID == 1)
                 {
@@ -140,8 +178,10 @@ namespace Nonograms_1._1
             }
             else
             {
+                labelStat.Text = "";
                 labelUsername.Text = "User";
-                labelStat.Visible = true;
+                labelStatTitle.Visible = false;
+                labelStat.Visible = false;
                 buttonGoCreate.Enabled = false;
                 buttonGoCreate.Visible = false;
             }
