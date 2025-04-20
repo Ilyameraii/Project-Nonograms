@@ -37,12 +37,12 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonHint = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelTime = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonExit
@@ -113,6 +113,15 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(450, 550);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(450, 450);
+            this.panel2.TabIndex = 1;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.labelTime);
@@ -136,15 +145,6 @@
             this.labelTime.TabIndex = 1;
             this.labelTime.Text = "00:00:00";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.panel);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(450, 450);
-            this.panel2.TabIndex = 1;
-            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,9 +161,9 @@
             this.Text = "Решение";
             this.Load += new System.EventHandler(this.GameForm_Load_1);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

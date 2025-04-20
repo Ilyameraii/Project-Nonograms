@@ -176,7 +176,6 @@
             this.Name = "CreateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateForm";
-            this.Load += new System.EventHandler(this.CreateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             this.ResumeLayout(false);

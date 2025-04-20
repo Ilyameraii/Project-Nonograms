@@ -1,4 +1,5 @@
-﻿using Nonograms_1._1.Models;
+﻿using Nonograms_1._1.forms;
+using Nonograms_1._1.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -376,7 +377,8 @@ namespace Nonograms_1._1.Forms
             if (winOrNot)
             {
                 timer.Enabled = false;
-                MessageBox.Show("Вы победили!\nИмя кроссворда: " + name, "Успех!", MessageBoxButtons.OK);
+                FormSuccess formSuccess = new FormSuccess(_crossword);
+                formSuccess.ShowDialog();
                 for (int i = 0; i < N; i++)
                 {
                     for (int j = 0; j < M; j++)
@@ -443,7 +445,8 @@ namespace Nonograms_1._1.Forms
                 _solvingProcess.StatusOfCrossword = true;
                 _solvingProcess.EndTime = DateTime.Now;
                 Program.context.SaveChanges();
-                MessageBox.Show("Вы победили!\nИмя кроссворда: " + name, "Успех!", MessageBoxButtons.OK);
+                FormSuccess formSuccess = new FormSuccess(_crossword);
+                formSuccess.ShowDialog();
                 for (int i = 0; i < N; i++)
                 {
                     for (int j = 0; j < M; j++)
@@ -524,11 +527,25 @@ namespace Nonograms_1._1.Forms
             int digitXSize = Math.Max(maxRowDigits, maxColDigits);
 
             // Вычисляем размер клетки так, чтобы все влезало
-            int pixelSize = Math.Min(panel.Width / (M + digitXSize), panel.Height / (N + digitXSize));
-            panel.Size = new Size((maxRowDigits + M) * pixelSize, (maxColDigits + N) * pixelSize);
+            int pixelSize;
+            if (Math.Max(M, N) + digitXSize < 13)
+            {
+                pixelSize = Math.Min(panel.Width / (M + digitXSize), panel.Height / (N + digitXSize));
+                panel.Size = new Size((maxRowDigits + M) * pixelSize, (maxColDigits + N) * pixelSize);
+                CenterPanel();
+            }
+            else
+            {
+                pixelSize = Math.Min(panel.Width / (13), panel.Height / (13));
+                panel.AutoScroll = true; // Включаем автопрокрутку
+                panel.AutoScrollMinSize = new Size(0, 0); // Сброс минимального размера
+                // Вычисляем общий размер кроссворда                                            
+                int totalWidth = (maxRowDigits + M) * pixelSize;
+                int totalHeight = (maxColDigits + N) * pixelSize;
+                // Устанавливаем минимальный размер для прокрутки
+                panel.AutoScrollMinSize = new Size(totalWidth, totalHeight);
 
-
-            CenterPanel();
+            }
             // Вычисляем корректные отступы для центрирования
             int offsetX = 0;
             int offsetY = 0;

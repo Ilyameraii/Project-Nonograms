@@ -67,6 +67,7 @@
             // 
             this.panelTop.BackColor = System.Drawing.SystemColors.Highlight;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTop.Controls.Add(this.panelUser);
             this.panelTop.Controls.Add(this.buttonGoCreate);
             this.panelTop.Controls.Add(this.panelHeader);
             this.panelTop.Controls.Add(this.buttonLogout);
@@ -125,19 +126,19 @@
             // 
             // panelStat
             // 
-            this.panelStat.Controls.Add(this.labelStat);
-            this.panelStat.Controls.Add(this.panelUser);
             this.panelStat.Controls.Add(this.labelStatTitle);
-            this.panelStat.Location = new System.Drawing.Point(28, 3);
+            this.panelStat.Controls.Add(this.labelStat);
+            this.panelStat.Location = new System.Drawing.Point(174, 4);
             this.panelStat.Name = "panelStat";
-            this.panelStat.Size = new System.Drawing.Size(440, 91);
+            this.panelStat.Padding = new System.Windows.Forms.Padding(10);
+            this.panelStat.Size = new System.Drawing.Size(294, 91);
             this.panelStat.TabIndex = 7;
             // 
             // panelUser
             // 
             this.panelUser.Controls.Add(this.pictureBoxAvatar);
             this.panelUser.Controls.Add(this.labelUsername);
-            this.panelUser.Location = new System.Drawing.Point(0, -3);
+            this.panelUser.Location = new System.Drawing.Point(29, 3);
             this.panelUser.Name = "panelUser";
             this.panelUser.Size = new System.Drawing.Size(139, 94);
             this.panelUser.TabIndex = 7;
@@ -145,7 +146,7 @@
             // pictureBoxAvatar
             // 
             this.pictureBoxAvatar.Image = global::Nonograms_1._1.Properties.Resources.avatar;
-            this.pictureBoxAvatar.Location = new System.Drawing.Point(40, 10);
+            this.pictureBoxAvatar.Location = new System.Drawing.Point(40, 3);
             this.pictureBoxAvatar.Name = "pictureBoxAvatar";
             this.pictureBoxAvatar.Size = new System.Drawing.Size(60, 60);
             this.pictureBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -158,7 +159,7 @@
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
             this.labelUsername.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelUsername.ForeColor = System.Drawing.Color.White;
-            this.labelUsername.Location = new System.Drawing.Point(4, 73);
+            this.labelUsername.Location = new System.Drawing.Point(4, 66);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(133, 22);
             this.labelUsername.TabIndex = 5;
@@ -167,12 +168,13 @@
             // 
             // labelStatTitle
             // 
+            this.labelStatTitle.AutoSize = true;
             this.labelStatTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelStatTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelStatTitle.ForeColor = System.Drawing.Color.White;
-            this.labelStatTitle.Location = new System.Drawing.Point(145, 7);
+            this.labelStatTitle.Location = new System.Drawing.Point(13, 13);
             this.labelStatTitle.Name = "labelStatTitle";
-            this.labelStatTitle.Size = new System.Drawing.Size(99, 23);
+            this.labelStatTitle.Size = new System.Drawing.Size(84, 19);
             this.labelStatTitle.TabIndex = 6;
             this.labelStatTitle.Text = "Статистика";
             this.labelStatTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -320,11 +322,14 @@
             // 
             // labelStat
             // 
-            this.labelStat.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStat.AutoSize = true;
+            this.labelStat.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelStat.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelStat.ForeColor = System.Drawing.Color.White;
-            this.labelStat.Location = new System.Drawing.Point(154, 27);
+            this.labelStat.Location = new System.Drawing.Point(10, 66);
+            this.labelStat.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.labelStat.Name = "labelStat";
-            this.labelStat.Size = new System.Drawing.Size(273, 61);
+            this.labelStat.Size = new System.Drawing.Size(0, 15);
             this.labelStat.TabIndex = 8;
             // 
             // MenuForm
@@ -347,6 +352,7 @@
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelStat.ResumeLayout(false);
+            this.panelStat.PerformLayout();
             this.panelUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).EndInit();
             this.panelOfLevels.ResumeLayout(false);

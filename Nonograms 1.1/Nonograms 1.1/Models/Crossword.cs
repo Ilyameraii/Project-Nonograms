@@ -21,7 +21,7 @@ namespace Nonograms_1._1.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
+        [MaxLength(10000)]
         public string Matrix { get; set; }
 
         public int Width { get; set; }
