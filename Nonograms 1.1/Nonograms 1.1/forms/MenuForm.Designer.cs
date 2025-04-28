@@ -30,36 +30,32 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.panelUser = new System.Windows.Forms.Panel();
+            this.pictureBoxAvatar = new System.Windows.Forms.PictureBox();
+            this.labelUsername = new System.Windows.Forms.Label();
             this.buttonGoCreate = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.label = new System.Windows.Forms.Label();
-            this.panelStat = new System.Windows.Forms.Panel();
-            this.panelUser = new System.Windows.Forms.Panel();
-            this.pictureBoxAvatar = new System.Windows.Forms.PictureBox();
-            this.labelUsername = new System.Windows.Forms.Label();
-            this.labelStatTitle = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonToLogin = new System.Windows.Forms.Button();
             this.buttonToRegistration = new System.Windows.Forms.Button();
+            this.panelStat = new System.Windows.Forms.Panel();
+            this.labelStatTitle = new System.Windows.Forms.Label();
+            this.labelStat = new System.Windows.Forms.Label();
             this.panelOfLevels = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonEasy = new System.Windows.Forms.Button();
-            this.buttonMedium = new System.Windows.Forms.Button();
-            this.buttonHard = new System.Windows.Forms.Button();
             this.buttonCompleted = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.FLPanelOfCrosswords = new System.Windows.Forms.FlowLayoutPanel();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
-            this.labelStat = new System.Windows.Forms.Label();
+            this.FLPLevels = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTop.SuspendLayout();
+            this.panelUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelStat.SuspendLayout();
-            this.panelUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).BeginInit();
             this.panelOfLevels.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +75,38 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1064, 100);
             this.panelTop.TabIndex = 0;
+            // 
+            // panelUser
+            // 
+            this.panelUser.Controls.Add(this.pictureBoxAvatar);
+            this.panelUser.Controls.Add(this.labelUsername);
+            this.panelUser.Location = new System.Drawing.Point(29, 3);
+            this.panelUser.Name = "panelUser";
+            this.panelUser.Size = new System.Drawing.Size(139, 94);
+            this.panelUser.TabIndex = 7;
+            // 
+            // pictureBoxAvatar
+            // 
+            this.pictureBoxAvatar.Image = global::Nonograms_1._1.Properties.Resources.avatar;
+            this.pictureBoxAvatar.Location = new System.Drawing.Point(40, 3);
+            this.pictureBoxAvatar.Name = "pictureBoxAvatar";
+            this.pictureBoxAvatar.Size = new System.Drawing.Size(60, 60);
+            this.pictureBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAvatar.TabIndex = 4;
+            this.pictureBoxAvatar.TabStop = false;
+            this.pictureBoxAvatar.Click += new System.EventHandler(this.pictureBoxAvatar_Click);
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.BackColor = System.Drawing.Color.Transparent;
+            this.labelUsername.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelUsername.ForeColor = System.Drawing.Color.White;
+            this.labelUsername.Location = new System.Drawing.Point(4, 66);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(133, 22);
+            this.labelUsername.TabIndex = 5;
+            this.labelUsername.Text = "User";
+            this.labelUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // buttonGoCreate
             // 
@@ -124,62 +152,6 @@
             this.label.Text = "Японский кроссворд";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panelStat
-            // 
-            this.panelStat.Controls.Add(this.labelStatTitle);
-            this.panelStat.Controls.Add(this.labelStat);
-            this.panelStat.Location = new System.Drawing.Point(174, 4);
-            this.panelStat.Name = "panelStat";
-            this.panelStat.Padding = new System.Windows.Forms.Padding(10);
-            this.panelStat.Size = new System.Drawing.Size(294, 91);
-            this.panelStat.TabIndex = 7;
-            // 
-            // panelUser
-            // 
-            this.panelUser.Controls.Add(this.pictureBoxAvatar);
-            this.panelUser.Controls.Add(this.labelUsername);
-            this.panelUser.Location = new System.Drawing.Point(29, 3);
-            this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(139, 94);
-            this.panelUser.TabIndex = 7;
-            // 
-            // pictureBoxAvatar
-            // 
-            this.pictureBoxAvatar.Image = global::Nonograms_1._1.Properties.Resources.avatar;
-            this.pictureBoxAvatar.Location = new System.Drawing.Point(40, 3);
-            this.pictureBoxAvatar.Name = "pictureBoxAvatar";
-            this.pictureBoxAvatar.Size = new System.Drawing.Size(60, 60);
-            this.pictureBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxAvatar.TabIndex = 4;
-            this.pictureBoxAvatar.TabStop = false;
-            this.pictureBoxAvatar.Click += new System.EventHandler(this.pictureBoxAvatar_Click);
-            // 
-            // labelUsername
-            // 
-            this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelUsername.ForeColor = System.Drawing.Color.White;
-            this.labelUsername.Location = new System.Drawing.Point(4, 66);
-            this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(133, 22);
-            this.labelUsername.TabIndex = 5;
-            this.labelUsername.Text = "User";
-            this.labelUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelStatTitle
-            // 
-            this.labelStatTitle.AutoSize = true;
-            this.labelStatTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labelStatTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelStatTitle.ForeColor = System.Drawing.Color.White;
-            this.labelStatTitle.Location = new System.Drawing.Point(13, 13);
-            this.labelStatTitle.Name = "labelStatTitle";
-            this.labelStatTitle.Size = new System.Drawing.Size(84, 19);
-            this.labelStatTitle.TabIndex = 6;
-            this.labelStatTitle.Text = "Статистика";
-            this.labelStatTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelStatTitle.Visible = false;
-            // 
             // buttonLogout
             // 
             this.buttonLogout.Font = new System.Drawing.Font("Calibri", 9.75F);
@@ -213,80 +185,65 @@
             this.buttonToRegistration.UseVisualStyleBackColor = true;
             this.buttonToRegistration.Click += new System.EventHandler(this.buttonToRegistration_Click);
             // 
+            // panelStat
+            // 
+            this.panelStat.Controls.Add(this.labelStatTitle);
+            this.panelStat.Controls.Add(this.labelStat);
+            this.panelStat.Location = new System.Drawing.Point(174, 4);
+            this.panelStat.Name = "panelStat";
+            this.panelStat.Padding = new System.Windows.Forms.Padding(10);
+            this.panelStat.Size = new System.Drawing.Size(294, 91);
+            this.panelStat.TabIndex = 7;
+            // 
+            // labelStatTitle
+            // 
+            this.labelStatTitle.AutoSize = true;
+            this.labelStatTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelStatTitle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStatTitle.ForeColor = System.Drawing.Color.White;
+            this.labelStatTitle.Location = new System.Drawing.Point(13, 13);
+            this.labelStatTitle.Name = "labelStatTitle";
+            this.labelStatTitle.Size = new System.Drawing.Size(84, 19);
+            this.labelStatTitle.TabIndex = 6;
+            this.labelStatTitle.Text = "Статистика";
+            this.labelStatTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelStatTitle.Visible = false;
+            // 
+            // labelStat
+            // 
+            this.labelStat.AutoSize = true;
+            this.labelStat.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelStat.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStat.ForeColor = System.Drawing.Color.White;
+            this.labelStat.Location = new System.Drawing.Point(10, 66);
+            this.labelStat.Margin = new System.Windows.Forms.Padding(0);
+            this.labelStat.Name = "labelStat";
+            this.labelStat.Size = new System.Drawing.Size(0, 15);
+            this.labelStat.TabIndex = 8;
+            // 
             // panelOfLevels
             // 
             this.panelOfLevels.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panelOfLevels.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelOfLevels.Controls.Add(this.flowLayoutPanel1);
+            this.panelOfLevels.Controls.Add(this.FLPLevels);
+            this.panelOfLevels.Controls.Add(this.buttonCompleted);
             this.panelOfLevels.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOfLevels.Location = new System.Drawing.Point(0, 0);
+            this.panelOfLevels.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.panelOfLevels.Name = "panelOfLevels";
             this.panelOfLevels.Size = new System.Drawing.Size(1064, 50);
             this.panelOfLevels.TabIndex = 0;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonEasy);
-            this.flowLayoutPanel1.Controls.Add(this.buttonMedium);
-            this.flowLayoutPanel1.Controls.Add(this.buttonHard);
-            this.flowLayoutPanel1.Controls.Add(this.buttonCompleted);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, -3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1062, 51);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // buttonEasy
-            // 
-            this.buttonEasy.BackColor = System.Drawing.SystemColors.Window;
-            this.buttonEasy.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEasy.Location = new System.Drawing.Point(20, 14);
-            this.buttonEasy.Margin = new System.Windows.Forms.Padding(20, 14, 50, 14);
-            this.buttonEasy.Name = "buttonEasy";
-            this.buttonEasy.Size = new System.Drawing.Size(109, 23);
-            this.buttonEasy.TabIndex = 0;
-            this.buttonEasy.Text = "Лёгкие";
-            this.buttonEasy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonEasy.UseVisualStyleBackColor = false;
-            this.buttonEasy.Click += new System.EventHandler(this.buttonEasy_Click);
-            // 
-            // buttonMedium
-            // 
-            this.buttonMedium.BackColor = System.Drawing.SystemColors.Window;
-            this.buttonMedium.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonMedium.Location = new System.Drawing.Point(199, 14);
-            this.buttonMedium.Margin = new System.Windows.Forms.Padding(20, 14, 50, 14);
-            this.buttonMedium.Name = "buttonMedium";
-            this.buttonMedium.Size = new System.Drawing.Size(109, 23);
-            this.buttonMedium.TabIndex = 1;
-            this.buttonMedium.Text = "Средние";
-            this.buttonMedium.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonMedium.UseVisualStyleBackColor = false;
-            this.buttonMedium.Click += new System.EventHandler(this.buttonMedium_Click);
-            // 
-            // buttonHard
-            // 
-            this.buttonHard.BackColor = System.Drawing.SystemColors.Window;
-            this.buttonHard.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonHard.Location = new System.Drawing.Point(378, 14);
-            this.buttonHard.Margin = new System.Windows.Forms.Padding(20, 14, 50, 14);
-            this.buttonHard.Name = "buttonHard";
-            this.buttonHard.Size = new System.Drawing.Size(109, 23);
-            this.buttonHard.TabIndex = 2;
-            this.buttonHard.Text = "Сложные";
-            this.buttonHard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonHard.UseVisualStyleBackColor = false;
-            this.buttonHard.Click += new System.EventHandler(this.buttonHard_Click);
             // 
             // buttonCompleted
             // 
             this.buttonCompleted.BackColor = System.Drawing.SystemColors.Window;
             this.buttonCompleted.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCompleted.Location = new System.Drawing.Point(937, 14);
-            this.buttonCompleted.Margin = new System.Windows.Forms.Padding(400, 14, 0, 14);
+            this.buttonCompleted.Location = new System.Drawing.Point(943, 13);
+            this.buttonCompleted.Margin = new System.Windows.Forms.Padding(13);
             this.buttonCompleted.Name = "buttonCompleted";
-            this.buttonCompleted.Size = new System.Drawing.Size(109, 23);
+            this.buttonCompleted.Size = new System.Drawing.Size(109, 24);
             this.buttonCompleted.TabIndex = 3;
+            this.buttonCompleted.Tag = "0";
             this.buttonCompleted.Text = "Решенные";
             this.buttonCompleted.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonCompleted.UseVisualStyleBackColor = false;
@@ -320,17 +277,15 @@
             this.entityCommand1.EnablePlanCaching = true;
             this.entityCommand1.Transaction = null;
             // 
-            // labelStat
+            // FLPLevels
             // 
-            this.labelStat.AutoSize = true;
-            this.labelStat.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelStat.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelStat.ForeColor = System.Drawing.Color.White;
-            this.labelStat.Location = new System.Drawing.Point(10, 66);
-            this.labelStat.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.labelStat.Name = "labelStat";
-            this.labelStat.Size = new System.Drawing.Size(0, 15);
-            this.labelStat.TabIndex = 8;
+            this.FLPLevels.Dock = System.Windows.Forms.DockStyle.Left;
+            this.FLPLevels.Location = new System.Drawing.Point(0, 0);
+            this.FLPLevels.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.FLPLevels.Name = "FLPLevels";
+            this.FLPLevels.Size = new System.Drawing.Size(927, 48);
+            this.FLPLevels.TabIndex = 4;
+            this.FLPLevels.WrapContents = false;
             // 
             // MenuForm
             // 
@@ -349,14 +304,13 @@
             this.Text = "Меню";
             this.Load += new System.EventHandler(this.MenuForm_Load);
             this.panelTop.ResumeLayout(false);
+            this.panelUser.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).EndInit();
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelStat.ResumeLayout(false);
             this.panelStat.PerformLayout();
-            this.panelUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).EndInit();
             this.panelOfLevels.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -380,13 +334,10 @@
         private System.Windows.Forms.Panel panelOfLevels;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.FlowLayoutPanel FLPanelOfCrosswords;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button buttonEasy;
-        private System.Windows.Forms.Button buttonMedium;
-        private System.Windows.Forms.Button buttonHard;
         private System.Windows.Forms.Button buttonCompleted;
         private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
         private System.Windows.Forms.Label labelStat;
+        private System.Windows.Forms.FlowLayoutPanel FLPLevels;
     }
 }
 

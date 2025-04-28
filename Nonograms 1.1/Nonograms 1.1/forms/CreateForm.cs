@@ -26,6 +26,12 @@ namespace Nonograms_1._1.Forms
         public CreateForm()
         {
             InitializeComponent();
+
+            var difficults = Program.context.Difficults.OrderBy(d=>d.DifficultID).ToList();
+            foreach( var difficult in difficults )
+            {
+               comboBoxDifficult.Items.Add(difficult.DifficultName.ToString());
+            }
             // инициализируем компоненты матрицы
 
             N = Convert.ToInt32(numericUpDownLength.Value); // Размер матрицы N x N
@@ -216,7 +222,7 @@ namespace Nonograms_1._1.Forms
                             Matrix = matrix,
                             Width = width,
                             Height = height,
-                            Difficult = difficult,
+                            DifficultID = difficult,
                         };
                         Program.context.Crosswords.Add(crossword);
                         Program.context.SaveChanges();

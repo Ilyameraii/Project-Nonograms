@@ -116,7 +116,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(161, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(165, 123);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(177, 123);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.Click += new System.EventHandler(this.CrosswordUserControl_Click);
             // 
@@ -144,7 +144,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "CrosswordUserControl";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(342, 144);
+            this.Size = new System.Drawing.Size(359, 144);
             this.Load += new System.EventHandler(this.CrosswordUserControl_Load);
             this.Click += new System.EventHandler(this.CrosswordUserControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

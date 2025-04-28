@@ -136,10 +136,6 @@
             // comboBoxDifficult
             // 
             this.comboBoxDifficult.FormattingEnabled = true;
-            this.comboBoxDifficult.Items.AddRange(new object[] {
-            "Легкий",
-            "Средний",
-            "Сложный"});
             this.comboBoxDifficult.Location = new System.Drawing.Point(148, 220);
             this.comboBoxDifficult.Name = "comboBoxDifficult";
             this.comboBoxDifficult.Size = new System.Drawing.Size(100, 21);

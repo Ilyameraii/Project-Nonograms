@@ -5,77 +5,125 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Nonograms_1._1
 {
     public partial class MenuForm : Form
     {
         private User currentUser;
-        private int currentDifficult = 0;
+        private int currentLevel;
+        private bool showOnlyReady;
         public MenuForm()
         {
             InitializeComponent();
+            addButtonLevels();
+            updateUIForUser(currentUser);
+        }
+        private void addButtonLevels()
+        {
+            // добавляем сложности
+            var difficults = Program.context.Difficults.OrderBy(d => d.DifficultLevel).ToList();
+            foreach (var difficult in difficults)
+            {
+                Button button = new Button()
+                {
+                    Name = $"buttonDifficult{difficult.DifficultLevel}",
+                    Width = buttonCompleted.Width,
+                    Text = difficult.DifficultName,
+                    BackColor = SystemColors.Window,
+                    Margin = new Padding(13, 13, 0, 13),
+                    Font = buttonCompleted.Font,
+                    Tag = difficult.DifficultLevel,
+                };
+                button.Click += buttonLevel_Click;
+                FLPLevels.Controls.Add(button);
+            }
+        }
+        private void buttonLevel_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            if (button == null) return;
+            foreach (Button buttons in FLPLevels.Controls)
+            {
+                if (buttons.Tag != button.Tag)
+                {
+                    buttons.BackColor = SystemColors.Window;
+                }
+            }
+            if (currentLevel != (int)button.Tag)
+            {
+                button.BackColor = Color.LightGreen;
+                currentLevel = (int)button.Tag;
+            }
+            else
+            {
+                button.BackColor = SystemColors.Window;
+                currentLevel = 0;
+            }
+            fillPanelOfCrosswords();
+        }
+        private void buttonCompleted_Click(object sender, EventArgs e)
+        {
+            if (!showOnlyReady)
+            {
+                buttonCompleted.BackColor = Color.LightGreen;
+                showOnlyReady = true;
+            }
+            else
+            {
+                buttonCompleted.BackColor = SystemColors.Window;
+                showOnlyReady = false;
+            }
             fillPanelOfCrosswords();
         }
         private void fillPanelOfCrosswords()
         {
             FLPanelOfCrosswords.Controls.Clear();
-            var crosswords = Program.context.Crosswords;
-            for (int i = 0; i < crosswords.Count(); i++)
+            var crosswords = Program.context.Crosswords.OrderBy(x => x.CrosswordID).ToList();
+            if (currentLevel != 0)
             {
-                CrosswordUserControl crosswordUserControl;
-                Crossword crossword = Program.context.Crosswords.FirstOrDefault(x => x.CrosswordID == i + 1);
+                var difficult = Program.context.Difficults.Where(d=>d.DifficultLevel == currentLevel).FirstOrDefault();
+                crosswords = crosswords.Where(x => x.DifficultID  == difficult.DifficultID).ToList();
+            }
+            // заполнение листа кроссвордов для авторизованного пользователя
+
+            foreach (Crossword crossword in crosswords)
+            {
+                CrosswordUserControl crosswordUserControl = new CrosswordUserControl(crossword, currentUser);
                 if (currentUser != null)
                 {
-                    SolvingProcess solvingProcess = Program.context.SolvingProcesses.FirstOrDefault(x => x.UsersID == currentUser.UsersID && x.CrosswordID == crossword.CrosswordID);
+                    SolvingProcess solvingProcess = Program.context.SolvingProcesses
+                        .Where(s => s.CrosswordID == crossword.CrosswordID && s.UsersID == currentUser.UsersID).FirstOrDefault();
                     if (solvingProcess != null)
                     {
                         crosswordUserControl = new CrosswordUserControl(solvingProcess);
+                        if (!showOnlyReady || solvingProcess.StatusOfCrossword == true)
+                        {
+                            FLPanelOfCrosswords.Controls.Add(crosswordUserControl);
+                        }
                     }
                     else
                     {
-                        crosswordUserControl = new CrosswordUserControl(crossword, currentUser);
+                        if (!showOnlyReady)
+                        {
+                            FLPanelOfCrosswords.Controls.Add(crosswordUserControl);
+                        }
                     }
+                        crosswordUserControl.GameFormClosed += (s, args) =>
+                        {
+                            updateUIForUser(currentUser);
+                        };
+
+                    
                 }
                 else
                 {
-                    crosswordUserControl = new CrosswordUserControl(crossword, currentUser);
-                }
-                // Передаем метод обновления панели в UserControl
-                crosswordUserControl.GameFormClosed += (s, args) =>
-                {
-                    fillPanelOfCrosswords();  // Обновляем панель
-                    if (currentUser != null)
+                    if (!showOnlyReady)
                     {
-                        updateUIForUser(currentUser);
-                    }
-                };
-
-                if (currentDifficult != crossword.Difficult && currentDifficult > 0 && currentDifficult < 4)
-                {
-                    continue;
-                }
-                else if (currentUser != null)
-                {
-                    SolvingProcess solvingProcess = Program.context.SolvingProcesses.FirstOrDefault(x => x.UsersID == currentUser.UsersID && x.CrosswordID == crossword.CrosswordID);
-                    if (solvingProcess != null)
-                    {
-                        if (currentDifficult == 4 && solvingProcess.StatusOfCrossword == false)
-                        {
-                            continue;
-                        }
-                    }
-                    else if (currentDifficult == 4)
-                    {
-                        continue;
+                        FLPanelOfCrosswords.Controls.Add(crosswordUserControl);
                     }
                 }
-                else if (currentDifficult == 4)
-                {
-                    continue;
-                }
-                FLPanelOfCrosswords.Controls.Add(crosswordUserControl);
-
             }
         }
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -92,8 +140,6 @@ namespace Nonograms_1._1
                         );
 
             }
-
-            fillPanelOfCrosswords();
         }
         private void buttonToLogin_Click(object sender, EventArgs e)
         {
@@ -107,7 +153,6 @@ namespace Nonograms_1._1
                 updateUIForUser(currentUser);
 
             }
-            fillPanelOfCrosswords();
         }
         private void MenuForm_Load(object sender, EventArgs e)
         {
@@ -123,6 +168,7 @@ namespace Nonograms_1._1
         }
         private void updateUIForUser(User currentUser)
         {
+
             if (currentUser != null)
             {
                 // обновление интерфейса
@@ -135,22 +181,13 @@ namespace Nonograms_1._1
                     foreach (var process in readySolvingProcessesOfUser)
                     {
                         var crossword = process.Crossword;
-                        countOfDifficult += crossword.Difficult;
+                        countOfDifficult += crossword.Difficult.DifficultLevel;
                         countOfHintsUsed += (int)process.HintsUsed;
                     }
-                    labelStat.Text += $"Средняя сложность кроссворда: ";
-                    switch (countOfDifficult / readySolvingProcessesOfUser.Count)
-                    {
-                        case 1:
-                            labelStat.Text += $"Лёгкая";
-                            break;
-                        case 2:
-                            labelStat.Text += $"Средняя";
-                            break;
-                        case 3:
-                            labelStat.Text += $"Сложная";
-                            break;
-                    }
+                    var middleDiff = Program.context.Difficults.Where(d => d.DifficultLevel ==
+                    countOfDifficult / readySolvingProcessesOfUser.Count).FirstOrDefault();
+                    labelStat.Text += $"Средняя сложность кроссворда:{middleDiff.DifficultName}";
+
 
                     labelStat.Text += Environment.NewLine;
                     labelStat.Text += $"В среднем подсказок:  {countOfHintsUsed / readySolvingProcessesOfUser.Count}";
@@ -162,7 +199,7 @@ namespace Nonograms_1._1
                     labelStat.Text += $"В среднем подсказок: 0";
 
                 }
-                    labelStatTitle.Visible = true;
+                labelStatTitle.Visible = true;
                 labelStat.Visible = true;
                 labelUsername.Text = currentUser.UserLogin;
                 if (currentUser.UsersID == 1)
@@ -207,86 +244,12 @@ namespace Nonograms_1._1
 
         }
 
-        private void panelOfCrosswords_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void buttonEasy_Click(object sender, EventArgs e)
-        {
-            if (currentDifficult != 1)
-            {
-                currentDifficult = 1;
-                buttonEasy.BackColor = Color.LightGreen;
-                buttonMedium.BackColor = SystemColors.Window;
-                buttonHard.BackColor = SystemColors.Window;
-                buttonCompleted.BackColor = SystemColors.Window;
-            }
-            else
-            {
-                currentDifficult = 0;
-                buttonEasy.BackColor = SystemColors.Window;
-            }
-            fillPanelOfCrosswords();
-        }
-
-        private void buttonMedium_Click(object sender, EventArgs e)
-        {
-            if (currentDifficult != 2)
-            {
-                currentDifficult = 2;
-                buttonEasy.BackColor = SystemColors.Window;
-                buttonMedium.BackColor = Color.LightGreen;
-                buttonHard.BackColor = SystemColors.Window;
-                buttonCompleted.BackColor = SystemColors.Window;
-            }
-            else
-            {
-                currentDifficult = 0;
-                buttonMedium.BackColor = SystemColors.Window;
-            }
-            fillPanelOfCrosswords();
-        }
-
-        private void buttonHard_Click(object sender, EventArgs e)
-        {
-            if (currentDifficult != 3)
-            {
-                currentDifficult = 3;
-                buttonEasy.BackColor = SystemColors.Window;
-                buttonMedium.BackColor = SystemColors.Window;
-                buttonHard.BackColor = Color.LightGreen;
-                buttonCompleted.BackColor = SystemColors.Window;
-            }
-            else
-            {
-                currentDifficult = 0;
-                buttonHard.BackColor = SystemColors.Window;
-            }
-            fillPanelOfCrosswords();
-        }
-
-        private void buttonCompleted_Click(object sender, EventArgs e)
-        {
-            if (currentDifficult != 4)
-            {
-                currentDifficult = 4;
-                buttonEasy.BackColor = SystemColors.Window;
-                buttonMedium.BackColor = SystemColors.Window;
-                buttonHard.BackColor = SystemColors.Window;
-                buttonCompleted.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                currentDifficult = 0;
-                buttonCompleted.BackColor = SystemColors.Window;
-            }
-            fillPanelOfCrosswords();
-        }
 
         private void FLPanelOfCrosswords_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+
     }
 }

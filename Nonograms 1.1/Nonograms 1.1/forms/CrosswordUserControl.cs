@@ -33,23 +33,13 @@ namespace Nonograms_1._1.forms
             InitializeComponent();
             _crossword = crossword;
             _currentUser = currentUser;
-            labelID.Text = "#"+Convert.ToString(_crossword.CrosswordID);
+            labelID.Text = "#" + Convert.ToString(_crossword.CrosswordID);
             labelSize.Text = $"Размер:{_crossword.Width}x{_crossword.Height}";
-            labelDifficult.Text = "Сложность: ";
-            if (_crossword.Difficult == 1)
-            {
-                labelDifficult.Text += "Легкая";
-            }
-            else if (_crossword.Difficult == 2)
-            {
-                labelDifficult.Text += "Средняя";
-            }
-            else if (_crossword.Difficult == 3)
-            {
-                labelDifficult.Text += "Сложная";
-            }
+            var currentDiff = _crossword.Difficult;
+            labelDifficult.Text = $"Сложность: {currentDiff.DifficultName}";
             labelStatus.Text = "Статус: не начат";
             labelProgress.Text = "Прогресс: 0%";
+
             // добавляем нужную по смыслу кроссворда картинку
             if (crossword.Width == crossword.Height)
             {
@@ -69,27 +59,16 @@ namespace Nonograms_1._1.forms
         {
             InitializeComponent();
             _solvingProcess = solvingProcess;
-            _currentUser = Program.context.Users.FirstOrDefault(u => u.UsersID == solvingProcess.UsersID);
-            _crossword = Program.context.Crosswords.FirstOrDefault(c => c.CrosswordID == solvingProcess.CrosswordID);
+            _currentUser = solvingProcess.User;
+            _crossword = solvingProcess.Crossword;
 
             labelID.Text = "#" + Convert.ToString(_crossword.CrosswordID);
             labelSize.Text = $"Размер:{_crossword.Width}x{_crossword.Height}";
-            labelDifficult.Text = "Сложность: ";
-            if (_crossword.Difficult == 1)
-            {
-                labelDifficult.Text += "Легкая";
-            }
-            else if (_crossword.Difficult == 2)
-            {
-                labelDifficult.Text += "Средняя";
-            }
-            else if (_crossword.Difficult == 3)
-            {
-                labelDifficult.Text += "Сложная";
-            }
+            var currentDiff = _crossword.Difficult;
+            labelDifficult.Text = $"Сложность: {currentDiff.DifficultName}";
 
             string matrix = _solvingProcess.Progress;
-            string  readyMatrix = _crossword.Matrix;
+            string readyMatrix = _crossword.Matrix;
             for (int i = 0; i < readyMatrix.Length; i++)
             {
                 if (Convert.ToInt32(Convert.ToString(readyMatrix[i])) == valueOfBlack)
@@ -125,7 +104,7 @@ namespace Nonograms_1._1.forms
             labelStatus.Text = "Статус: ";
             if (_readyPercent == 0)
             {
-                labelStatus.Text +="не начат";
+                labelStatus.Text += "не начат";
             }
             else if (_readyPercent == 100)
             {
@@ -156,48 +135,48 @@ namespace Nonograms_1._1.forms
 
         }
 
-            private void CrosswordUserControl_Click(object sender, EventArgs e)
+        private void CrosswordUserControl_Click(object sender, EventArgs e)
+        {
+            if (_crossword == null)
             {
-                if (_crossword == null)
+                MessageBox.Show("Кроссворд не найден!");
+                return;
+            }
+            if (_currentUser != null)
+            {
+                SolvingProcess solvingProcess = Program.context.SolvingProcesses.FirstOrDefault(x => x.CrosswordID == _crossword.CrosswordID && x.UsersID == _currentUser.UsersID);
+                if (solvingProcess == null)
                 {
-                    MessageBox.Show("Кроссворд не найден!");
-                    return;
-                }
-                if (_currentUser != null)
-                {
-                    SolvingProcess solvingProcess = Program.context.SolvingProcesses.FirstOrDefault(x => x.CrosswordID == _crossword.CrosswordID && x.UsersID == _currentUser.UsersID);
-                    if (solvingProcess == null)
+                    solvingProcess = new SolvingProcess()
                     {
-                        solvingProcess = new SolvingProcess()
-                        {
-                            CrosswordID = _crossword.CrosswordID,
-                            UsersID = _currentUser.UsersID,
-                            StatusOfCrossword = false,
-                            StartTime = DateTime.Now,
-                            HintsUsed = 0,
-                            Mistakes = 0,
-                            LeadTime = 0,
-                            Progress = new string('0', _crossword.Width * _crossword.Height) // Инициализируем прогресс   
-                        };
-                        Program.context.SolvingProcesses.Add(solvingProcess);
-                        Program.context.SaveChanges();
-                    }
-                    GameForm gameForm = new GameForm(solvingProcess);
-                    gameForm.FormClosed += (s, args) =>
-                    {
-                        GameFormClosed?.Invoke(this, EventArgs.Empty);
+                        CrosswordID = _crossword.CrosswordID,
+                        UsersID = _currentUser.UsersID,
+                        StatusOfCrossword = false,
+                        StartTime = DateTime.Now,
+                        HintsUsed = 0,
+                        Mistakes = 0,
+                        LeadTime = 0,
+                        Progress = new string('0', _crossword.Width * _crossword.Height) // Инициализируем прогресс   
                     };
-                    gameForm.ShowDialog(); // Блокирует главную форму
+                    Program.context.SolvingProcesses.Add(solvingProcess);
+                    Program.context.SaveChanges();
                 }
-                else
+                GameForm gameForm = new GameForm(solvingProcess);
+                gameForm.FormClosed += (s, args) =>
                 {
-                    GameForm gameForm = new GameForm(_crossword);
-                    gameForm.FormClosed += (s, args) =>
-                    {
-                        GameFormClosed?.Invoke(this, EventArgs.Empty);
-                    };
-                    gameForm.ShowDialog(); // Блокирует главную форму
-                }
+                    GameFormClosed?.Invoke(this, EventArgs.Empty);
+                };
+                gameForm.ShowDialog(); // Блокирует главную форму
+            }
+            else
+            {
+                GameForm gameForm = new GameForm(_crossword);
+                gameForm.FormClosed += (s, args) =>
+                {
+                    GameFormClosed?.Invoke(this, EventArgs.Empty);
+                };
+                gameForm.ShowDialog(); // Блокирует главную форму
+            }
         }
     }
 }

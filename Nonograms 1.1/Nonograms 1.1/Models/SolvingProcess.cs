@@ -17,7 +17,6 @@ namespace Nonograms_1._1.Models
 
         public bool? StatusOfCrossword { get; set; }
 
-        [Required]
         public string Progress { get; set; }
 
         [Column(TypeName = "datetime2")]
