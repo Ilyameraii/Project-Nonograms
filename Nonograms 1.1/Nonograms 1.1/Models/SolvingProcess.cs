@@ -29,8 +29,6 @@ namespace Nonograms_1._1.Models
 
         public int? HintsUsed { get; set; }
 
-        public int? Mistakes { get; set; }
-
         public virtual Crossword Crossword { get; set; }
 
         public virtual User User { get; set; }

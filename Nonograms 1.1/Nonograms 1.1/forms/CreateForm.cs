@@ -15,10 +15,10 @@ namespace Nonograms_1._1.Forms
 {
     public partial class CreateForm : Form
     {
-        private int N;
-        private int M;
-        private int[,] matrix; // заполняемая матрица
-        private int levelDifficult = 0;
+        private int _width;
+        private int _height;
+        private int[,] _matrix; // заполняемая матрица
+        private int _levelDifficult = 0;
         private string matrixToString;
         private int valueOfX = 2;
         private int valueOfBlack = 1;
@@ -34,14 +34,14 @@ namespace Nonograms_1._1.Forms
             }
             // инициализируем компоненты матрицы
 
-            N = Convert.ToInt32(numericUpDownLength.Value); // Размер матрицы N x N
+            _width = Convert.ToInt32(numericUpDownLength.Value); // Размер матрицы N x N
 
-            M = Convert.ToInt32(numericUpDownHeight.Value); // Размер матрицы N x N
+            _height = Convert.ToInt32(numericUpDownHeight.Value); // Размер матрицы N x N
 
             // размер заполняемой матрицы
-            matrix = new int[N, M];
+            _matrix = new int[_width, _height];
             // создаем матрицу(игровое поле) из Label
-            createGameMatrix(N, M);
+            createGameMatrix(_width, _height);
         }
 
         private void CreateForm_Load(object sender, EventArgs e)
@@ -96,29 +96,29 @@ namespace Nonograms_1._1.Forms
         private void UpdateMatrix()
         {
             matrixToString = null;
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     string pixelName = $"pixel{i}{j}";
                     Label pixel = panel.Controls.Find(pixelName, true).FirstOrDefault() as Label;
                     // значение закрашенной клетки
-                    if ((matrix[i, j] == valueOfWhite || matrix[i, j] == valueOfX) && pixel.BackColor == Color.Black)
+                    if ((_matrix[i, j] == valueOfWhite || _matrix[i, j] == valueOfX) && pixel.BackColor == Color.Black)
                     {
-                        matrix[i, j] = valueOfBlack;
+                        _matrix[i, j] = valueOfBlack;
                     }
                     // значения пустой клетки
-                    if ((matrix[i, j] == valueOfX && pixel.Tag == null) ||
-                        matrix[i, j] == valueOfBlack && pixel.BackColor == Color.LightBlue)
+                    if ((_matrix[i, j] == valueOfX && pixel.Tag == null) ||
+                        _matrix[i, j] == valueOfBlack && pixel.BackColor == Color.LightBlue)
                     {
-                        matrix[i, j] = valueOfWhite;
+                        _matrix[i, j] = valueOfWhite;
                     }
                     // значение крестика
-                    if (matrix[i, j] == valueOfWhite && pixel.Tag == "cross")
+                    if (_matrix[i, j] == valueOfWhite && pixel.Tag == "cross")
                     {
-                        matrix[i, j] = valueOfX;
+                        _matrix[i, j] = valueOfX;
                     }
-                    matrixToString += matrix[i, j];
+                    matrixToString += _matrix[i, j];
                 }
             }
 
@@ -150,21 +150,22 @@ namespace Nonograms_1._1.Forms
         /// <summary>
         /// создаем матрицу(игровое поле) из Label
         /// </summary>
-        private void createGameMatrix(int N, int M)
+        /// 
+        private void createGameMatrix(int width, int height)
         {
             // само игровое поле, с которым взаимодействует пользователь
             int pixelSize; // Размер одного "пикселя"
-            if (N > M)
+            if (width > height)
             {
-                pixelSize = panel.Width / N;
+                pixelSize = panel.Width / width;
             }
             else
             {
-                pixelSize = panel.Width / M;
+                pixelSize = panel.Width / height;
             }
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < height; j++)
                 {
                     Label pixel = new Label();
                     pixel.Name = $"pixel{i}{j}";
@@ -195,13 +196,39 @@ namespace Nonograms_1._1.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+       
+        private void numericUpDownLength_ValueChanged(object sender, EventArgs e)
+        {
+            panel.Controls.Clear(); // Очищаем панель перед созданием новых кнопок
+            _width = Convert.ToInt32(numericUpDownLength.Value); // Размер матрицы N x N
+            createGameMatrix(_width, _height);
+
+            _matrix = new int[_width, _height];
+
+        }
+
+        private void numericUpDownHeight_ValueChanged(object sender, EventArgs e)
+        {
+            ;
+            panel.Controls.Clear(); // Очищаем панель перед созданием новых кнопок
+            _height = Convert.ToInt32(numericUpDownHeight.Value); // Размер матрицы N x N
+            createGameMatrix(_width, _height);
+
+            _matrix = new int[_width, _height];
+        }
+
+        private void comboBoxDifficult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _levelDifficult = comboBoxDifficult.SelectedIndex + 1;
+        }
+
+        private void buttonCreate_Click(object sender, EventArgs e)
         {
             string name = textBoxName.Text;
             string matrix = matrixToString;
-            int width = N;
-            int height = M;
-            int difficult = levelDifficult;
+            int width = _width;
+            int height = _height;
+            int difficult = _levelDifficult;
             bool isMatrixFilled = false;
             foreach (var item in matrix)
             {
@@ -230,33 +257,6 @@ namespace Nonograms_1._1.Forms
                     }
                 }
             }
-
-
-        }
-
-        private void numericUpDownLength_ValueChanged(object sender, EventArgs e)
-        {
-            panel.Controls.Clear(); // Очищаем панель перед созданием новых кнопок
-            N = Convert.ToInt32(numericUpDownLength.Value); // Размер матрицы N x N
-            createGameMatrix(N, M);
-
-            matrix = new int[N, M];
-
-        }
-
-        private void numericUpDownHeight_ValueChanged(object sender, EventArgs e)
-        {
-            ;
-            panel.Controls.Clear(); // Очищаем панель перед созданием новых кнопок
-            M = Convert.ToInt32(numericUpDownHeight.Value); // Размер матрицы N x N
-            createGameMatrix(N, M);
-
-            matrix = new int[N, M];
-        }
-
-        private void comboBoxDifficult_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            levelDifficult = comboBoxDifficult.SelectedIndex + 1;
         }
     }
 }

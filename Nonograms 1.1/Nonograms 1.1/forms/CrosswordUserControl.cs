@@ -154,7 +154,6 @@ namespace Nonograms_1._1.forms
                         StatusOfCrossword = false,
                         StartTime = DateTime.Now,
                         HintsUsed = 0,
-                        Mistakes = 0,
                         LeadTime = 0,
                         Progress = new string('0', _crossword.Width * _crossword.Height) // Инициализируем прогресс   
                     };

@@ -48,7 +48,7 @@
             this.buttonExit.Location = new System.Drawing.Point(12, 12);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(109, 30);
-            this.buttonExit.TabIndex = 6;
+            this.buttonExit.TabIndex = 5;
             this.buttonExit.Text = "Выйти";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -82,7 +82,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(154, 235);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(109, 30);
-            this.buttonLogin.TabIndex = 34;
+            this.buttonLogin.TabIndex = 3;
             this.buttonLogin.Text = "Войти";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
@@ -112,7 +112,7 @@
             this.textBoxPassword.Location = new System.Drawing.Point(154, 166);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(258, 20);
-            this.textBoxPassword.TabIndex = 31;
+            this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged_1);
             // 
@@ -121,7 +121,7 @@
             this.textBoxLogin.Location = new System.Drawing.Point(154, 94);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(290, 20);
-            this.textBoxLogin.TabIndex = 30;
+            this.textBoxLogin.TabIndex = 1;
             // 
             // buttonCancel
             // 
@@ -129,7 +129,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(335, 235);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(109, 30);
-            this.buttonCancel.TabIndex = 37;
+            this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);

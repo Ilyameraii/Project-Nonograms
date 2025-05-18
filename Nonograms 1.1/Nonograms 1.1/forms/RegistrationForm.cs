@@ -10,9 +10,9 @@ namespace Nonograms_1._1.Forms
 {
     public partial class RegistrationForm: Form
     {
-        private bool canRegLogin = false;
-        private bool canRegPassword = false;
-        private bool canRegEmail = false;
+        private bool _canRegLogin = false;
+        private bool _canRegPassword = false;
+        private bool _canRegEmail = false;
 
         public RegistrationForm()
         {
@@ -23,29 +23,6 @@ namespace Nonograms_1._1.Forms
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void buttonLogin_Click(object sender, EventArgs e)
-        {
-            canRegistration(); // проверка на корректность ввода данных
-
-            textBoxColors(); // маркировка неправильно введенных данных
-
-            if (canRegLogin && canRegPassword && canRegEmail)
-            {
-                // создание нового пользователя
-                createNewUser();
-
-                // оповещение
-                MessageBox.Show(
-                        "Успешная регистрация!",
-                        "Регистрация",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                DialogResult = DialogResult.OK;
-                this.Close();
-            }
         }
 
         private void pictureBoxUnvisible_Click(object sender, EventArgs e)
@@ -110,9 +87,9 @@ namespace Nonograms_1._1.Forms
         }
         private void canRegistration()
         {
-            canRegLogin = true;
-            canRegEmail = true;
-            canRegPassword = true;
+            _canRegLogin = true;
+            _canRegEmail = true;
+            _canRegPassword = true;
 
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Text.Trim();
@@ -123,32 +100,32 @@ namespace Nonograms_1._1.Forms
             if (Program.context.Users.Any(u => u.UserLogin == login) ||
                login.Length < 3)
             {
-                canRegLogin = false;
+                _canRegLogin = false;
             }
 
             if (password.Length < 8 ||
                 password != retryPassword ||
                 password.Contains(" "))
             {
-                canRegPassword = false;
+                _canRegPassword = false;
             }
 
             if(!Regex.IsMatch(email, patternEmail)){
-                canRegEmail = false;
+                _canRegEmail = false;
             }
         }
         private void textBoxColors()
         {
-            if (!canRegLogin)
+            if (!_canRegLogin)
             {
                 textBoxLogin.BackColor = Color.Red;
             }
 
-            if (!canRegPassword)
+            if (!_canRegPassword)
             {
                 textBoxPassword.BackColor = Color.Red;
             }
-            if (!canRegEmail)
+            if (!_canRegEmail)
             {
                 textBoxEmail.BackColor = Color.Red;
             }
@@ -210,6 +187,29 @@ namespace Nonograms_1._1.Forms
             {
                 e.Handled = true;
                 System.Media.SystemSounds.Beep.Play();
+            }
+        }
+
+        private void buttonRegistration_Click(object sender, EventArgs e)
+        {
+            canRegistration(); // проверка на корректность ввода данных
+
+            textBoxColors(); // маркировка неправильно введенных данных
+
+            if (_canRegLogin && _canRegPassword && _canRegEmail)
+            {
+                // создание нового пользователя
+                createNewUser();
+
+                // оповещение
+                MessageBox.Show(
+                        "Успешная регистрация!",
+                        "Регистрация",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
     }

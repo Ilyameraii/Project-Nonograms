@@ -115,7 +115,7 @@
             this.buttonCreate.TabIndex = 14;
             this.buttonCreate.Text = "Создать";
             this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.button1_Click);
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // textBoxName
             // 

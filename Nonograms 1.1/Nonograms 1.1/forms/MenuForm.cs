@@ -202,7 +202,7 @@ namespace Nonograms_1._1
                 labelStatTitle.Visible = true;
                 labelStat.Visible = true;
                 labelUsername.Text = currentUser.UserLogin;
-                if (currentUser.UsersID == 1)
+                if (currentUser.RoleID == 1)
                 {
                     buttonGoCreate.Enabled = true;
                     buttonGoCreate.Visible = true;

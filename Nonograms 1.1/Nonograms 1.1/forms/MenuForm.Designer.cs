@@ -44,11 +44,11 @@
             this.labelStatTitle = new System.Windows.Forms.Label();
             this.labelStat = new System.Windows.Forms.Label();
             this.panelOfLevels = new System.Windows.Forms.Panel();
+            this.FLPLevels = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCompleted = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.FLPanelOfCrosswords = new System.Windows.Forms.FlowLayoutPanel();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
-            this.FLPLevels = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTop.SuspendLayout();
             this.panelUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatar)).BeginInit();
@@ -229,10 +229,20 @@
             this.panelOfLevels.Controls.Add(this.buttonCompleted);
             this.panelOfLevels.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOfLevels.Location = new System.Drawing.Point(0, 0);
-            this.panelOfLevels.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.panelOfLevels.Margin = new System.Windows.Forms.Padding(0);
             this.panelOfLevels.Name = "panelOfLevels";
             this.panelOfLevels.Size = new System.Drawing.Size(1064, 50);
             this.panelOfLevels.TabIndex = 0;
+            // 
+            // FLPLevels
+            // 
+            this.FLPLevels.Dock = System.Windows.Forms.DockStyle.Left;
+            this.FLPLevels.Location = new System.Drawing.Point(0, 0);
+            this.FLPLevels.Margin = new System.Windows.Forms.Padding(0);
+            this.FLPLevels.Name = "FLPLevels";
+            this.FLPLevels.Size = new System.Drawing.Size(927, 48);
+            this.FLPLevels.TabIndex = 4;
+            this.FLPLevels.WrapContents = false;
             // 
             // buttonCompleted
             // 
@@ -276,16 +286,6 @@
             this.entityCommand1.Connection = null;
             this.entityCommand1.EnablePlanCaching = true;
             this.entityCommand1.Transaction = null;
-            // 
-            // FLPLevels
-            // 
-            this.FLPLevels.Dock = System.Windows.Forms.DockStyle.Left;
-            this.FLPLevels.Location = new System.Drawing.Point(0, 0);
-            this.FLPLevels.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.FLPLevels.Name = "FLPLevels";
-            this.FLPLevels.Size = new System.Drawing.Size(927, 48);
-            this.FLPLevels.TabIndex = 4;
-            this.FLPLevels.WrapContents = false;
             // 
             // MenuForm
             // 

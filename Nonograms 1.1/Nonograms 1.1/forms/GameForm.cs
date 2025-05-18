@@ -12,15 +12,15 @@ namespace Nonograms_1._1.Forms
     public partial class GameForm : Form
     {
         // свойства матриц
-        private int N; // длина в клетках
-        private int M; // ширина  в  клетках
+        private int _width; // длина в клетках
+        private int _height; // ширина  в  клетках
         private int[,] matrix; // заполняемая матрица
         private int[,] readyMatrix; // готовая матрица
         // значения клеток в цифрах
         private int valueOfX = 2; // зачеркнутый крестик
         private int valueOfBlack = 1; // черная клетка 
         private int valueOfWhite = 0; // белая клетка
-        // переменные для полчения данных из бд
+        // переменные для получения данных из бд
         private string name;
         private Crossword _crossword;
         private SolvingProcess _solvingProcess;
@@ -30,7 +30,7 @@ namespace Nonograms_1._1.Forms
         //подсказки
         private bool hintOrNot = false;
         private int hintsUsed = 0;
-        private int maxOfHints = 10;
+        private const int maxOfHints = 10;
         // таймер
         public int A = 0; // десятки часов таймера
         public int B = 0; // часы таймера
@@ -48,20 +48,20 @@ namespace Nonograms_1._1.Forms
 
             this._crossword = crossword;
             // инициализируем компоненты матрицы
-            N = _crossword.Width;
-            M = _crossword.Height;
+            _width = _crossword.Width;
+            _height = _crossword.Height;
             // размер заполняемой матрицы
-            matrix = new int[N, M];
+            matrix = new int[_width, _height];
             name = _crossword.Name;
             // размер готовой числовой матрицы
-            readyMatrix = new int[N, M];
+            readyMatrix = new int[_width, _height];
             // Заполняем готовую матрицу
             string matrixString = _crossword.Matrix;
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
-                    int index = i * M + j;
+                    int index = i * _height + j;
                     if (index < matrixString.Length)
                     {
                         readyMatrix[i, j] = int.Parse(Convert.ToString(_crossword.Matrix[index]));
@@ -69,12 +69,12 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // создаем матрицу(игровое поле) из Label
-            createGameMatrix(N, M);
+            createGameMatrix(_width, _height);
 
             // вычисление количества черных клеток у готового кроссворда
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     if (readyMatrix[i, j] == valueOfBlack)
                     {
@@ -105,16 +105,16 @@ namespace Nonograms_1._1.Forms
             }
             InitializeComponent();
             // инициализируем компоненты матрицы
-            N = _crossword.Width;
-            M = _crossword.Height;
+            _width = _crossword.Width;
+            _height = _crossword.Height;
             // размер заполняемой матрицы
-            matrix = new int[N, M];
+            matrix = new int[_width, _height];
             // заполняем заполняемую матрицу
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
-                    int index = i * M + j;
+                    int index = i * _height + j;
                     if (index < _solvingProcess.Progress.Length)
                     {
                         matrix[i, j] = int.Parse(Convert.ToString(_solvingProcess.Progress[index]));
@@ -123,13 +123,13 @@ namespace Nonograms_1._1.Forms
             }
             name = _crossword.Name;
             // размер готовой числовой матрицы
-            readyMatrix = new int[N, M];
+            readyMatrix = new int[_width, _height];
             // Заполняем готовую матрицу
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
-                    int index = i * M + j;
+                    int index = i * _height + j;
                     if (index < _crossword.Matrix.Length)
                     {
                         readyMatrix[i, j] = int.Parse(Convert.ToString(_crossword.Matrix[index]));
@@ -137,13 +137,13 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // создаем матрицу(игровое поле) из Label
-            createGameMatrix(N, M);
+            createGameMatrix(_width, _height);
 
             if (_solvingProcess.StatusOfCrossword == true)
             {
-                for (int i = 0; i < N; i++)
+                for (int i = 0; i < _width; i++)
                 {
-                    for (int j = 0; j < M; j++)
+                    for (int j = 0; j < _height; j++)
                     {
                         string pixelName = $"pixel{i}{j}";
                         Label pixel = panel.Controls.Find(pixelName, true).FirstOrDefault() as Label;
@@ -154,9 +154,9 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // вычисление количества черных клеток у готового кроссворда
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     if (readyMatrix[i, j] == valueOfBlack)
                     {
@@ -250,9 +250,9 @@ namespace Nonograms_1._1.Forms
             else
             {
                 Label pixel = (Label)sender;
-                for (int i = 0; i < N; i++)
+                for (int i = 0; i < _width; i++)
                 {
-                    for (int j = 0; j < M; j++)
+                    for (int j = 0; j < _height; j++)
                     {
                         string pixelName = $"pixel{i}{j}";
                         if (pixel.Name == pixelName)
@@ -331,9 +331,9 @@ namespace Nonograms_1._1.Forms
         /// </summary>
         private void UpdateMatrixForCrossword()
         {
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     string pixelName = $"pixel{i}{j}";
                     Label pixel = panel.Controls.Find(pixelName, true).FirstOrDefault() as Label;
@@ -364,9 +364,9 @@ namespace Nonograms_1._1.Forms
             // проверка на выигрыш
             bool winOrNot = true;
 
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     if (matrix[i, j] == valueOfBlack && readyMatrix[i, j] != valueOfBlack || matrix[i, j] != valueOfBlack && readyMatrix[i, j] == valueOfBlack)
                     {
@@ -379,9 +379,9 @@ namespace Nonograms_1._1.Forms
                 timer.Enabled = false;
                 FormSuccess formSuccess = new FormSuccess(_crossword);
                 formSuccess.ShowDialog();
-                for (int i = 0; i < N; i++)
+                for (int i = 0; i < _width; i++)
                 {
-                    for (int j = 0; j < M; j++)
+                    for (int j = 0; j < _height; j++)
                     {
                         string pixelName = $"pixel{i}{j}";
                         Label pixel = panel.Controls.Find(pixelName, true).FirstOrDefault() as Label;
@@ -396,9 +396,9 @@ namespace Nonograms_1._1.Forms
         /// </summary>
         private void UpdateMatrixForSP()
         {
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     string pixelName = $"pixel{i}{j}";
                     Label pixel = panel.Controls.Find(pixelName, true).FirstOrDefault() as Label;
@@ -429,9 +429,9 @@ namespace Nonograms_1._1.Forms
             // проверка на выигрыш
             bool winOrNot = true;
 
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     if (matrix[i, j] == valueOfBlack && readyMatrix[i, j] != valueOfBlack || matrix[i, j] != valueOfBlack && readyMatrix[i, j] == valueOfBlack)
                     {
@@ -447,9 +447,9 @@ namespace Nonograms_1._1.Forms
                 Program.context.SaveChanges();
                 FormSuccess formSuccess = new FormSuccess(_crossword);
                 formSuccess.ShowDialog();
-                for (int i = 0; i < N; i++)
+                for (int i = 0; i < _width; i++)
                 {
-                    for (int j = 0; j < M; j++)
+                    for (int j = 0; j < _height; j++)
                     {
                         string pixelName = $"pixel{i}{j}";
                         Label pixel = panel.Controls.Find(pixelName, true).FirstOrDefault() as Label;
@@ -459,10 +459,10 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // 1. Преобразуем текущую матрицу в строку прогресса
-            StringBuilder progressBuilder = new StringBuilder(N * M);
-            for (int i = 0; i < N; i++)
+            StringBuilder progressBuilder = new StringBuilder(_width * _height);
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     progressBuilder.Append(matrix[i, j]);
                 }
@@ -509,7 +509,7 @@ namespace Nonograms_1._1.Forms
         /// <summary>
         /// Создаём игровое поле и панели с цифрами
         /// </summary>
-        private void createGameMatrix(int N, int M)
+        private void createGameMatrix(int width, int height)
         {
             panel.Controls.Clear(); // Очищаем панель перед созданием новой матрицы
 
@@ -517,10 +517,10 @@ namespace Nonograms_1._1.Forms
             int maxRowDigits = 0;
             int maxColDigits = 0;
 
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < width; i++)
                 maxRowDigits = Math.Max(maxRowDigits, GetHintsForRow(i).Count);
 
-            for (int j = 0; j < M; j++)
+            for (int j = 0; j < height; j++)
                 maxColDigits = Math.Max(maxColDigits, GetHintsForColumn(j).Count);
 
             // Максимальный размер отступа под цифры
@@ -528,10 +528,10 @@ namespace Nonograms_1._1.Forms
 
             // Вычисляем размер клетки так, чтобы все влезало
             int pixelSize;
-            if (Math.Max(M, N) + digitXSize < 13)
+            if (Math.Max(height, width) + digitXSize < 13)
             {
-                pixelSize = Math.Min(panel.Width / (M + digitXSize), panel.Height / (N + digitXSize));
-                panel.Size = new Size((maxRowDigits + M) * pixelSize, (maxColDigits + N) * pixelSize);
+                pixelSize = Math.Min(panel.Width / (height + digitXSize), panel.Height / (width + digitXSize));
+                panel.Size = new Size((maxRowDigits + height) * pixelSize, (maxColDigits + width) * pixelSize);
                 CenterPanel();
             }
             else
@@ -540,8 +540,8 @@ namespace Nonograms_1._1.Forms
                 panel.AutoScroll = true; // Включаем автопрокрутку
                 panel.AutoScrollMinSize = new Size(0, 0); // Сброс минимального размера
                 // Вычисляем общий размер кроссворда                                            
-                int totalWidth = (maxRowDigits + M) * pixelSize;
-                int totalHeight = (maxColDigits + N) * pixelSize;
+                int totalWidth = (maxRowDigits + height) * pixelSize;
+                int totalHeight = (maxColDigits + width) * pixelSize;
                 // Устанавливаем минимальный размер для прокрутки
                 panel.AutoScrollMinSize = new Size(totalWidth, totalHeight);
 
@@ -551,7 +551,7 @@ namespace Nonograms_1._1.Forms
             int offsetY = 0;
 
             // Генерация чисел для столбцов (прижимаем к нижнему краю)
-            for (int j = 0; j < M; j++)
+            for (int j = 0; j < height; j++)
             {
                 List<int> columnHints = GetHintsForColumn(j);
                 int startY = offsetY + (maxColDigits - columnHints.Count) * pixelSize; // Смещение вниз
@@ -576,7 +576,7 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // Генерация чисел для строк (прижимаем к правому краю)
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < width; i++)
             {
                 List<int> rowHints = GetHintsForRow(i);
                 int startX = offsetX + (maxRowDigits - rowHints.Count) * pixelSize; // Смещение вправо
@@ -602,7 +602,7 @@ namespace Nonograms_1._1.Forms
             }
             // поиск минимального размера шрифта
             float minSize = 72f;
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < width; i++)
             {
                 List<int> rowHints = GetHintsForRow(i);
                 for (int k = 0; k < rowHints.Count; k++)
@@ -612,7 +612,7 @@ namespace Nonograms_1._1.Forms
                     minSize = Math.Min(minSize, row.Font.Size);
                 }
             }
-            for (int i = 0; i < M; i++)
+            for (int i = 0; i < height; i++)
             {
 
                 List<int> columnHints = GetHintsForColumn(i);
@@ -625,7 +625,7 @@ namespace Nonograms_1._1.Forms
             }
 
             // выравнивание шрифтов
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < width; i++)
             {
                 List<int> rowHints = GetHintsForRow(i);
                 for (int k = 0; k < rowHints.Count; k++)
@@ -635,7 +635,7 @@ namespace Nonograms_1._1.Forms
                     row.Font = new Font(row.Font.FontFamily, minSize, row.Font.Style);
                 }
             }
-            for (int i = 0; i < M; i++)
+            for (int i = 0; i < height; i++)
             {
 
                 List<int> columnHints = GetHintsForColumn(i);
@@ -647,9 +647,9 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // Генерация игрового поля с учетом прогресса
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < height; j++)
                 {
                     Label pixel = new Label
                     {
@@ -680,9 +680,9 @@ namespace Nonograms_1._1.Forms
                 }
             }
             // Заполняем ВСЁ пространство панели клетками (включая подсказки)
-            for (int y = 0; y < maxColDigits + N; y++)
+            for (int y = 0; y < maxColDigits + width; y++)
             {
-                for (int x = 0; x < maxRowDigits + M; x++)
+                for (int x = 0; x < maxRowDigits + height; x++)
                 {
                     // Пропускаем левый верхний угол (где x < maxRowDigits И y < maxColDigits)
                     if (x < maxRowDigits && y < maxColDigits)
@@ -721,7 +721,7 @@ namespace Nonograms_1._1.Forms
         {
             List<int> hints = new List<int>();
             int count = 0;
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
                 if (readyMatrix[i, col] == valueOfBlack)
                 {
@@ -744,7 +744,7 @@ namespace Nonograms_1._1.Forms
         {
             List<int> hints = new List<int>();
             int count = 0;
-            for (int j = 0; j < M; j++)
+            for (int j = 0; j < _height; j++)
             {
                 if (readyMatrix[row, j] == valueOfBlack)
                 {
@@ -945,7 +945,7 @@ namespace Nonograms_1._1.Forms
                 _solvingProcess.StatusOfCrossword = false;
 
                 // Создаем строку прогресса из нулей
-                _solvingProcess.Progress = new string('0', N * M);
+                _solvingProcess.Progress = new string('0', _width * _height);
 
                 // Обновляем таймер 
                 _solvingProcess.StartTime = DateTime.Now;
@@ -954,9 +954,9 @@ namespace Nonograms_1._1.Forms
                 _solvingProcess.EndTime = null;
                 // Обновляем матрицу
             }
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < _width; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < _height; j++)
                 {
                     // Сбрасываем значение в матрице
                     matrix[i, j] = 0;

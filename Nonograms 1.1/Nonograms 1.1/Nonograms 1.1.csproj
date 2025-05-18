@@ -103,6 +103,7 @@
     <Compile Include="Models\Crossword.cs" />
     <Compile Include="Models\Difficult.cs" />
     <Compile Include="Models\ModelNonograms.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SolvingProcess.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
