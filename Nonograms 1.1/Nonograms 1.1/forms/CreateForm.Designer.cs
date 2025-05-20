@@ -135,7 +135,7 @@
             // 
             // comboBoxDifficult
             // 
-            this.comboBoxDifficult.FormattingEnabled = true;
+            this.comboBoxDifficult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDifficult.Location = new System.Drawing.Point(148, 220);
             this.comboBoxDifficult.Name = "comboBoxDifficult";
             this.comboBoxDifficult.Size = new System.Drawing.Size(100, 21);
@@ -171,7 +171,8 @@
             this.MaximizeBox = false;
             this.Name = "CreateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateForm";
+            this.Text = "Создание кроссворда";
+            this.Load += new System.EventHandler(this.CreateForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             this.ResumeLayout(false);

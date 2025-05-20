@@ -246,7 +246,7 @@ namespace Nonograms_1._1.Forms
                     }
 
                 }
-            }
+            }   
             else
             {
                 Label pixel = (Label)sender;
@@ -508,7 +508,7 @@ namespace Nonograms_1._1.Forms
         }
         /// <summary>
         /// Создаём игровое поле и панели с цифрами
-        /// </summary>
+        /// </summary>      
         private void createGameMatrix(int width, int height)
         {
             panel.Controls.Clear(); // Очищаем панель перед созданием новой матрицы
@@ -1022,6 +1022,33 @@ namespace Nonograms_1._1.Forms
                     hintOrNot = false;
                 }
             }
+        }
+
+        private void crossBlockLabel_Paint(object sender, PaintEventArgs e)
+        {
+            Label label = sender as Label;
+
+            using (Pen pen = new Pen(Color.Black, 2))
+            {
+                int clientWidth = label.ClientSize.Width;
+                int clientHeight = label.ClientSize.Height;
+
+                int centerX = clientWidth / 2;
+                int centerY = clientHeight / 2;
+
+                int crossSize = Math.Min(clientWidth, clientHeight) / 2 - 2;
+
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                // Рисуем две диагональные линии
+                e.Graphics.DrawLine(pen, centerX - crossSize, centerY - crossSize, centerX + crossSize, centerY + crossSize);
+                e.Graphics.DrawLine(pen, centerX + crossSize, centerY - crossSize, centerX - crossSize, centerY + crossSize);
+            }
+        }
+
+        private void buttonHideControl_Click(object sender, EventArgs e)
+        {
+            panelControlHint.Visible = false;
         }
     }
 }

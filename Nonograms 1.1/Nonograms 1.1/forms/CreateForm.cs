@@ -27,10 +27,10 @@ namespace Nonograms_1._1.Forms
         {
             InitializeComponent();
 
-            var difficults = Program.context.Difficults.OrderBy(d=>d.DifficultID).ToList();
-            foreach( var difficult in difficults )
+            var difficults = Program.context.Difficults.OrderBy(d => d.DifficultID).ToList();
+            foreach (var difficult in difficults)
             {
-               comboBoxDifficult.Items.Add(difficult.DifficultName.ToString());
+                comboBoxDifficult.Items.Add(difficult.DifficultName.ToString());
             }
             // инициализируем компоненты матрицы
 
@@ -42,6 +42,8 @@ namespace Nonograms_1._1.Forms
             _matrix = new int[_width, _height];
             // создаем матрицу(игровое поле) из Label
             createGameMatrix(_width, _height);
+
+            UpdateMatrix();
         }
 
         private void CreateForm_Load(object sender, EventArgs e)
@@ -196,7 +198,7 @@ namespace Nonograms_1._1.Forms
             }
         }
 
-       
+
         private void numericUpDownLength_ValueChanged(object sender, EventArgs e)
         {
             panel.Controls.Clear(); // Очищаем панель перед созданием новых кнопок
@@ -237,7 +239,7 @@ namespace Nonograms_1._1.Forms
                     isMatrixFilled = true;
                 }
             }
-            if (isMatrixFilled)
+            if (isMatrixFilled && name != null && width > 2 && height > 2 && difficult > 0)
             {
                 if (name != null)
                 {
@@ -257,6 +259,11 @@ namespace Nonograms_1._1.Forms
                     }
                 }
             }
+        }
+
+        private void CreateForm_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

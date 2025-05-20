@@ -75,7 +75,11 @@ namespace Nonograms_1._1.Forms
 
         private void textBoxRetryPassword_TextChanged(object sender, EventArgs e)
         {
+            if (textBoxPassword.BackColor == Color.Red)
+            {
 
+                textBoxPassword.BackColor = SystemColors.Window;
+            }
         }
 
         private void textBoxEmail_TextChanged(object sender, EventArgs e)

@@ -140,6 +140,10 @@ namespace Nonograms_1._1
                         );
 
             }
+            else
+            {
+                this.Close();
+            }
         }
         private void buttonToLogin_Click(object sender, EventArgs e)
         {

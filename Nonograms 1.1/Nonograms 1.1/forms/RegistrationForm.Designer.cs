@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationForm));
             this.buttonExit = new System.Windows.Forms.Button();
             this.pictureBoxUnvisible = new System.Windows.Forms.PictureBox();
@@ -42,6 +43,7 @@
             this.labelEmail = new System.Windows.Forms.Label();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUnvisible)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVisible)).BeginInit();
             this.SuspendLayout();
@@ -119,6 +121,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(258, 20);
             this.textBoxPassword.TabIndex = 2;
+            this.toolTip.SetToolTip(this.textBoxPassword, "Пароль без пробелов и не менее 8 символов");
             this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
@@ -129,6 +132,7 @@
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(290, 20);
             this.textBoxLogin.TabIndex = 1;
+            this.toolTip.SetToolTip(this.textBoxLogin, "Уникальный логин не меньше 3 символов");
             this.textBoxLogin.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
             this.textBoxLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
@@ -168,6 +172,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(290, 20);
             this.textBoxEmail.TabIndex = 4;
+            this.toolTip.SetToolTip(this.textBoxEmail, "Введите корректно ваш e-mail");
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             this.textBoxEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
@@ -181,6 +186,12 @@
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 1000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
             // 
             // RegistrationForm
             // 
@@ -230,5 +241,6 @@
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
