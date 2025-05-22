@@ -8,7 +8,7 @@ namespace Nonograms_1._1.Models
     public partial class ModelNonograms : DbContext
     {
         public ModelNonograms()
-            : base("name=ModelNonograms4")
+            : base("name=ModelNonograms2")
         {
         }
 

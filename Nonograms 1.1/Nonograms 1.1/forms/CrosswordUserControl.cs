@@ -26,7 +26,6 @@ namespace Nonograms_1._1.forms
         private int _countOfBlack = 0; //  счетчик черных клеток готового кроссворда для вычисления процента 
         private int _readyPercent = 0; // процент готовности решения
 
-        private Difficult _currentDifficult;
         public event EventHandler GameFormClosed;
 
         public CrosswordUserControl(Crossword crossword, User currentUser)
@@ -34,14 +33,27 @@ namespace Nonograms_1._1.forms
             InitializeComponent();
             _crossword = crossword;
             _currentUser = currentUser;
-            _currentDifficult = _crossword.Difficult;
             labelID.Text = "#" + Convert.ToString(_crossword.CrosswordID);
             labelSize.Text = $"Размер:{_crossword.Width}x{_crossword.Height}";
-            labelDifficult.Text = $"Сложность: {_currentDifficult.DifficultName}";
+            var currentDiff = _crossword.Difficult;
+            labelDifficult.Text = $"Сложность: {currentDiff.DifficultName}";
             labelStatus.Text = "Статус: не начат";
             labelProgress.Text = "Прогресс: 0%";
-            giveImage();
-            pictureBox.Location = new System.Drawing.Point((panelImage.Width-pictureBox.Width)/2,(panelImage.Height-pictureBox.Height)/2);
+
+            // добавляем нужную по смыслу кроссворда картинку
+            if (crossword.Width == crossword.Height)
+            {
+                pictureBox.Image = Nonograms_1._1.Properties.Resources.hardNxN;
+            }
+
+            else if (crossword.Width > crossword.Height)
+            {
+                pictureBox.Image = Nonograms_1._1.Properties.Resources.hardNxM;
+            }
+            else if (crossword.Width < crossword.Height)
+            {
+                pictureBox.Image = Nonograms_1._1.Properties.Resources.hardMxN;
+            }
         }
         public CrosswordUserControl(SolvingProcess solvingProcess)
         {
@@ -49,11 +61,11 @@ namespace Nonograms_1._1.forms
             _solvingProcess = solvingProcess;
             _currentUser = solvingProcess.User;
             _crossword = solvingProcess.Crossword;
-            _currentDifficult = _crossword.Difficult;
 
             labelID.Text = "#" + Convert.ToString(_crossword.CrosswordID);
             labelSize.Text = $"Размер:{_crossword.Width}x{_crossword.Height}";
-            labelDifficult.Text = $"Сложность: {_currentDifficult.DifficultName}";
+            var currentDiff = _crossword.Difficult;
+            labelDifficult.Text = $"Сложность: {currentDiff.DifficultName}";
 
             string matrix = _solvingProcess.Progress;
             string readyMatrix = _crossword.Matrix;
@@ -104,75 +116,25 @@ namespace Nonograms_1._1.forms
             }
             labelProgress.Text = $"Прогресс: {_readyPercent}%";
             // добавляем нужную по смыслу кроссворда картинку
-            giveImage();
-            pictureBox.Location = new System.Drawing.Point((panelImage.Width - pictureBox.Width) / 2, (panelImage.Height - pictureBox.Height) / 2);
+            if (_crossword.Width == _crossword.Height)
+            {
+                pictureBox.Image = Nonograms_1._1.Properties.Resources.hardNxN;
+            }
+
+            else if (_crossword.Width > _crossword.Height)
+            {
+                pictureBox.Image = Nonograms_1._1.Properties.Resources.hardNxM;
+            }
+            else if (_crossword.Width < _crossword.Height)
+            {
+                pictureBox.Image = Nonograms_1._1.Properties.Resources.hardMxN;
+            }
         }
         private void CrosswordUserControl_Load(object sender, EventArgs e)
         {
 
         }
-        private void giveImage()
-        {
-            switch (_currentDifficult.DifficultLevel)
-            {
-                case 1:
-                    if (_crossword.Width == _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.veryeasyNxN;
-                    }
-                    else if (_crossword.Width > _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.veryeasyMxN;
-                    }
-                    else if (_crossword.Width < _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.veryeasyNxM;
-                    }
-                    break;
-                case 2:
-                    if (_crossword.Width == _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.easyNxN;
-                    }
-                    else if (_crossword.Width > _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.easyMxN;
-                    }
-                    else if (_crossword.Width < _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.easyNxM;
-                    }
-                    break;
-                case 3:
-                    if (_crossword.Width == _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.middleNxN;
-                    }
-                    else if (_crossword.Width > _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.middleMxN;
-                    }
-                    else if (_crossword.Width < _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.middleNxM;
-                    }
-                    break;
-                case 4:
-                    if (_crossword.Width == _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.hardNxN;
-                    }
-                    else if (_crossword.Width > _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.hardMxN;
-                    }
-                    else if (_crossword.Width < _crossword.Height)
-                    {
-                        pictureBox.Image = Nonograms_1._1.Properties.Resources.hardNxM;
-                    }
-                    break;
-            }
-        }
+
         private void CrosswordUserControl_Click(object sender, EventArgs e)
         {
             if (_crossword == null)

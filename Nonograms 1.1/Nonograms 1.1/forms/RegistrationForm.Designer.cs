@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationForm));
             this.buttonExit = new System.Windows.Forms.Button();
             this.pictureBoxUnvisible = new System.Windows.Forms.PictureBox();
             this.pictureBoxVisible = new System.Windows.Forms.PictureBox();
-            this.buttonRegistration = new System.Windows.Forms.Button();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
@@ -43,7 +42,6 @@
             this.labelEmail = new System.Windows.Forms.Label();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUnvisible)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVisible)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +52,7 @@
             this.buttonExit.Location = new System.Drawing.Point(12, 12);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(109, 30);
-            this.buttonExit.TabIndex = 7;
+            this.buttonExit.TabIndex = 6;
             this.buttonExit.Text = "Выйти";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -82,16 +80,16 @@
             this.pictureBoxVisible.Visible = false;
             this.pictureBoxVisible.Click += new System.EventHandler(this.pictureBoxVisible_Click);
             // 
-            // buttonRegistration
+            // buttonLogin
             // 
-            this.buttonRegistration.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.buttonRegistration.Location = new System.Drawing.Point(148, 295);
-            this.buttonRegistration.Name = "buttonRegistration";
-            this.buttonRegistration.Size = new System.Drawing.Size(132, 30);
-            this.buttonRegistration.TabIndex = 5;
-            this.buttonRegistration.Text = "Зарегистрироваться";
-            this.buttonRegistration.UseVisualStyleBackColor = true;
-            this.buttonRegistration.Click += new System.EventHandler(this.buttonRegistration_Click);
+            this.buttonLogin.Font = new System.Drawing.Font("Calibri", 9.75F);
+            this.buttonLogin.Location = new System.Drawing.Point(148, 295);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(132, 30);
+            this.buttonLogin.TabIndex = 25;
+            this.buttonLogin.Text = "Зарегистрироваться";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // label2
             // 
@@ -120,8 +118,7 @@
             this.textBoxPassword.Location = new System.Drawing.Point(154, 121);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(258, 20);
-            this.textBoxPassword.TabIndex = 2;
-            this.toolTip.SetToolTip(this.textBoxPassword, "Пароль без пробелов и не менее 8 символов");
+            this.textBoxPassword.TabIndex = 22;
             this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
@@ -131,8 +128,7 @@
             this.textBoxLogin.Location = new System.Drawing.Point(154, 66);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(290, 20);
-            this.textBoxLogin.TabIndex = 1;
-            this.toolTip.SetToolTip(this.textBoxLogin, "Уникальный логин не меньше 3 символов");
+            this.textBoxLogin.TabIndex = 21;
             this.textBoxLogin.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
             this.textBoxLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
@@ -141,7 +137,7 @@
             this.textBoxRetryPassword.Location = new System.Drawing.Point(154, 177);
             this.textBoxRetryPassword.Name = "textBoxRetryPassword";
             this.textBoxRetryPassword.Size = new System.Drawing.Size(290, 20);
-            this.textBoxRetryPassword.TabIndex = 3;
+            this.textBoxRetryPassword.TabIndex = 30;
             this.textBoxRetryPassword.UseSystemPasswordChar = true;
             this.textBoxRetryPassword.TextChanged += new System.EventHandler(this.textBoxRetryPassword_TextChanged);
             this.textBoxRetryPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
@@ -171,8 +167,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(154, 233);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(290, 20);
-            this.textBoxEmail.TabIndex = 4;
-            this.toolTip.SetToolTip(this.textBoxEmail, "Введите корректно ваш e-mail");
+            this.textBoxEmail.TabIndex = 32;
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             this.textBoxEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
@@ -182,16 +177,10 @@
             this.buttonCancel.Location = new System.Drawing.Point(335, 295);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(109, 30);
-            this.buttonCancel.TabIndex = 6;
+            this.buttonCancel.TabIndex = 38;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // toolTip
-            // 
-            this.toolTip.AutoPopDelay = 1000;
-            this.toolTip.InitialDelay = 500;
-            this.toolTip.ReshowDelay = 100;
             // 
             // RegistrationForm
             // 
@@ -206,7 +195,7 @@
             this.Controls.Add(this.textBoxRetryPassword);
             this.Controls.Add(this.pictureBoxUnvisible);
             this.Controls.Add(this.pictureBoxVisible);
-            this.Controls.Add(this.buttonRegistration);
+            this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxPassword);
@@ -231,7 +220,7 @@
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.PictureBox pictureBoxUnvisible;
         private System.Windows.Forms.PictureBox pictureBoxVisible;
-        private System.Windows.Forms.Button buttonRegistration;
+        private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxPassword;
@@ -241,6 +230,5 @@
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.ToolTip toolTip;
     }
 }

@@ -31,12 +31,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.labelNameOfCrossword = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
+            this.labelNameOfCrossword = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -51,7 +53,6 @@
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.LightGray;
-            this.panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Margin = new System.Windows.Forms.Padding(5);
             this.panel.Name = "panel";
@@ -70,43 +71,9 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Вы победили!";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 19);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Имя кроссворда: ";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Controls.Add(this.labelNameOfCrossword);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(74, 357);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(165, 25);
-            this.flowLayoutPanel1.TabIndex = 3;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
-            // 
-            // labelNameOfCrossword
-            // 
-            this.labelNameOfCrossword.AutoSize = true;
-            this.labelNameOfCrossword.BackColor = System.Drawing.Color.Transparent;
-            this.labelNameOfCrossword.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelNameOfCrossword.ForeColor = System.Drawing.Color.Black;
-            this.labelNameOfCrossword.Location = new System.Drawing.Point(137, 0);
-            this.labelNameOfCrossword.Name = "labelNameOfCrossword";
-            this.labelNameOfCrossword.Size = new System.Drawing.Size(0, 19);
-            this.labelNameOfCrossword.TabIndex = 4;
-            // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(96, 388);
+            this.buttonOK.Location = new System.Drawing.Point(100, 409);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(124, 23);
             this.buttonOK.TabIndex = 4;
@@ -114,14 +81,70 @@
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.button1_Click);
             // 
+            // labelNameOfCrossword
+            // 
+            this.labelNameOfCrossword.AutoSize = true;
+            this.labelNameOfCrossword.BackColor = System.Drawing.Color.Transparent;
+            this.labelNameOfCrossword.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelNameOfCrossword.ForeColor = System.Drawing.Color.Black;
+            this.labelNameOfCrossword.Location = new System.Drawing.Point(150, 0);
+            this.labelNameOfCrossword.Name = "labelNameOfCrossword";
+            this.labelNameOfCrossword.Size = new System.Drawing.Size(0, 19);
+            this.labelNameOfCrossword.TabIndex = 4;
+            this.labelNameOfCrossword.Click += new System.EventHandler(this.labelNameOfCrossword_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(86, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 19);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Имя кроссворда: ";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 352);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 27);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.labelNameOfCrossword, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 379);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(300, 27);
+            this.tableLayoutPanel2.TabIndex = 6;
+            // 
             // FormSuccess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(320, 420);
+            this.ClientSize = new System.Drawing.Size(320, 439);
             this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -130,8 +153,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSuccess";
             this.panel2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,9 +166,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label labelNameOfCrossword;
         private System.Windows.Forms.Button buttonOK;
+        private System.Windows.Forms.Label labelNameOfCrossword;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }

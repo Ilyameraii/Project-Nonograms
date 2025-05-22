@@ -35,9 +35,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -160,45 +157,6 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unvision.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vision.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\avatar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\veryeasyNxM.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\veryeasyMxN.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\veryeasyNxN.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\easyMxN.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\easyNxM.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\easyNxN.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\middleNxN.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\middleNxM.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\middleMxN.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\hardNxN.png" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +164,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hardMxN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unvision.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vision.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avatar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

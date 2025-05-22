@@ -10,9 +10,9 @@ namespace Nonograms_1._1.Forms
 {
     public partial class RegistrationForm: Form
     {
-        private bool _canRegLogin = false;
-        private bool _canRegPassword = false;
-        private bool _canRegEmail = false;
+        private bool canRegLogin = false;
+        private bool canRegPassword = false;
+        private bool canRegEmail = false;
 
         public RegistrationForm()
         {
@@ -23,6 +23,29 @@ namespace Nonograms_1._1.Forms
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            canRegistration(); // проверка на корректность ввода данных
+
+            textBoxColors(); // маркировка неправильно введенных данных
+
+            if (canRegLogin && canRegPassword && canRegEmail)
+            {
+                // создание нового пользователя
+                createNewUser();
+
+                // оповещение
+                MessageBox.Show(
+                        "Успешная регистрация!",
+                        "Регистрация",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void pictureBoxUnvisible_Click(object sender, EventArgs e)
@@ -75,11 +98,7 @@ namespace Nonograms_1._1.Forms
 
         private void textBoxRetryPassword_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxPassword.BackColor == Color.Red)
-            {
 
-                textBoxPassword.BackColor = SystemColors.Window;
-            }
         }
 
         private void textBoxEmail_TextChanged(object sender, EventArgs e)
@@ -91,9 +110,9 @@ namespace Nonograms_1._1.Forms
         }
         private void canRegistration()
         {
-            _canRegLogin = true;
-            _canRegEmail = true;
-            _canRegPassword = true;
+            canRegLogin = true;
+            canRegEmail = true;
+            canRegPassword = true;
 
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Text.Trim();
@@ -104,32 +123,32 @@ namespace Nonograms_1._1.Forms
             if (Program.context.Users.Any(u => u.UserLogin == login) ||
                login.Length < 3)
             {
-                _canRegLogin = false;
+                canRegLogin = false;
             }
 
             if (password.Length < 8 ||
                 password != retryPassword ||
                 password.Contains(" "))
             {
-                _canRegPassword = false;
+                canRegPassword = false;
             }
 
             if(!Regex.IsMatch(email, patternEmail)){
-                _canRegEmail = false;
+                canRegEmail = false;
             }
         }
         private void textBoxColors()
         {
-            if (!_canRegLogin)
+            if (!canRegLogin)
             {
                 textBoxLogin.BackColor = Color.Red;
             }
 
-            if (!_canRegPassword)
+            if (!canRegPassword)
             {
                 textBoxPassword.BackColor = Color.Red;
             }
-            if (!_canRegEmail)
+            if (!canRegEmail)
             {
                 textBoxEmail.BackColor = Color.Red;
             }
@@ -191,29 +210,6 @@ namespace Nonograms_1._1.Forms
             {
                 e.Handled = true;
                 System.Media.SystemSounds.Beep.Play();
-            }
-        }
-
-        private void buttonRegistration_Click(object sender, EventArgs e)
-        {
-            canRegistration(); // проверка на корректность ввода данных
-
-            textBoxColors(); // маркировка неправильно введенных данных
-
-            if (_canRegLogin && _canRegPassword && _canRegEmail)
-            {
-                // создание нового пользователя
-                createNewUser();
-
-                // оповещение
-                MessageBox.Show(
-                        "Успешная регистрация!",
-                        "Регистрация",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                DialogResult = DialogResult.OK;
-                this.Close();
             }
         }
     }

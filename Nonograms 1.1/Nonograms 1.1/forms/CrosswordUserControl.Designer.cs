@@ -35,10 +35,8 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelDifficult = new System.Windows.Forms.Label();
-            this.panelImage = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panelImage.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelID
@@ -97,11 +95,11 @@
             // 
             this.pictureBox.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox.Location = new System.Drawing.Point(10, 10);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox.Size = new System.Drawing.Size(126, 124);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.CrosswordUserControl_Click);
@@ -115,7 +113,7 @@
             this.flowLayoutPanel1.Controls.Add(this.labelSize);
             this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(139, 10);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(161, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(177, 123);
@@ -135,14 +133,6 @@
             this.labelDifficult.Text = "Difficult";
             this.labelDifficult.Click += new System.EventHandler(this.CrosswordUserControl_Click);
             // 
-            // panelImage
-            // 
-            this.panelImage.Controls.Add(this.pictureBox);
-            this.panelImage.Location = new System.Drawing.Point(10, 10);
-            this.panelImage.Name = "panelImage";
-            this.panelImage.Size = new System.Drawing.Size(123, 123);
-            this.panelImage.TabIndex = 5;
-            // 
             // CrosswordUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,18 +140,16 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.panelImage);
+            this.Controls.Add(this.pictureBox);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "CrosswordUserControl";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(348, 144);
+            this.Size = new System.Drawing.Size(359, 144);
             this.Load += new System.EventHandler(this.CrosswordUserControl_Load);
             this.Click += new System.EventHandler(this.CrosswordUserControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.panelImage.ResumeLayout(false);
-            this.panelImage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -175,6 +163,5 @@
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label labelDifficult;
-        private System.Windows.Forms.Panel panelImage;
     }
 }
